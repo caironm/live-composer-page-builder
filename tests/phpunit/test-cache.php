@@ -52,4 +52,49 @@ class Cache extends WP_UnitTestCase {
 
 		// fwrite( STDERR, print_r( $transient_lc_cache, true ) );
 	}
+
+	/**
+	 * Test: Cache Disabled
+	 */
+	public function test_cache_update_page() {
+
+		// Cache is enabled.
+		$lc_cache     = new DSLC_Cache();
+		$ref_object   = new ReflectionObject( $lc_cache );
+		$ref_property = $ref_object->getProperty( 'enabled' ); // private static $enabled.
+		$ref_property->setAccessible( true );
+		$ref_property->setValue( null, true ); // cache is enabled
+
+		$cache_enabled = $lc_cache->enabled();
+
+		// Check if cache is enabled.
+		$this->assertTrue( $cache_enabled );
+
+		$page_id = $this->factory->post->create(
+			array(
+				'post_type'    => 'page',
+				'post_title'   => 'Page Test Cache',
+				'post_content' => 'Test Cache',
+			)
+		);
+
+		$lc_cache->set_cache( 'lc_html', $page_id, 'html' );
+		$lc_cache->set_cache( 'lc_css', $page_id, 'css' );
+		$lc_cache->set_cache( 'lc_fonts', $page_id, 'fonts' );
+
+		// Check if a page is a cached.
+		$this->assertTrue( $lc_cache->cached( $page_id ) );
+
+		// Update Page.
+		$update_page                 = array();
+		$update_page['ID']           = $page_id;
+		$update_page['post_content'] = 'New Content';
+
+		wp_update_post( wp_slash( $update_page ) );
+
+		// Check if a page is not cached.
+		$this->assertFalse( $lc_cache->cached( $page_id ) );
+
+		//fwrite( STDERR, print_r( $lc_cache->cached( $page_id ), true ) );
+	}
 }
