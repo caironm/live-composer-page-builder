@@ -157,4 +157,29 @@ class Cache extends WP_UnitTestCase {
 
 		// fwrite( STDERR, print_r( get_transient( 'lc_cache' ), true ) );
 	}
+
+	/**
+	 * Test: Disable a cache when popular plugins ( W3 Total Cache or WP Super cache ) are enabled.
+	 */
+/* 	public function test_cache_active_popular_plugins() {
+
+		// Cache is enabled.
+		$lc_cache     = new DSLC_Cache();
+		$ref_object   = new ReflectionObject( $lc_cache );
+		$ref_property = $ref_object->getProperty( 'enabled' ); // private static $enabled.
+		$ref_property->setAccessible( true );
+		$ref_property->setValue( null, true ); // cache is enabled
+
+		$cache_enabled = $lc_cache->enabled();
+
+		// Check if cache is enabled.
+		$this->assertTrue( $cache_enabled );
+
+		$disable_cache = $lc_cache->should_disable_cache();
+
+		// Check if cache is disable.
+		$this->assertTrue( $disable_cache);
+
+		// fwrite( STDERR, print_r( $disable_cache, true ) );
+	} */
 }
