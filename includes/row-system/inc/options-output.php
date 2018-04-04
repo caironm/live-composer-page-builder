@@ -36,77 +36,77 @@ function dslc_row_display_options() {
 
 		$css_rule_output = '';
 
-		if ( isset( $row_option['affect_on_change_rule'] ) ) {
+		if ( isset( $row_option[ 'affect_on_change_rule' ] ) ) {
 
-			$css_rule_output = $row_option['affect_on_change_rule'];
+			$css_rule_output = $row_option[ 'affect_on_change_rule' ];
 		}
 
 		$css_element_output = '';
-		if ( isset( $row_option['affect_on_change_el'] ) ) {
+		if ( isset( $row_option[ 'affect_on_change_el' ] ) ) {
 
-			$css_element_output = $row_option['affect_on_change_el'];
+			$css_element_output = $row_option[ 'affect_on_change_el' ];
 		}
 
 		$extra_class = '';
-		if ( 'image' === $row_option['type'] || 'video' === $row_option['type'] ) {
+		if ( 'image' === $row_option[ 'type' ] || 'video' === $row_option[ 'type' ] ) {
 
 			$extra_class = 'dslca-modules-section-edit-option-upload';
 		}
 
-		if ( 'border_checkbox' === $row_option['type'] || 'checkbox' === $row_option['type'] ) {
+		if ( 'border_checkbox' === $row_option[ 'type' ] || 'checkbox' === $row_option[ 'type' ] ) {
 
 			$extra_class = 'dslca-modules-section-edit-option-checkbox';
 		}
 
-		if ( ! isset( $row_option['ext'] ) ) {
+		if ( ! isset( $row_option[ 'ext' ] ) ) {
 
-			$row_option['ext'] = '';
+			$row_option[ 'ext' ] = '';
 		}
 
-		if ( ! isset( $row_option['min'] ) ) {
+		if ( ! isset( $row_option[ 'min' ] ) ) {
 
-			$row_option['min'] = 0;
+			$row_option[ 'min' ] = 0;
 		}
 
-		if ( ! isset( $row_option['max'] ) ) {
+		if ( ! isset( $row_option[ 'max' ] ) ) {
 
-			$row_option['max'] = 100;
+			$row_option[ 'max' ] = 100;
 		}
 
-		if ( ! isset( $row_option['increment'] ) ) {
+		if ( ! isset( $row_option[ 'increment' ] ) ) {
 
-			$row_option['increment'] = 1;
+			$row_option[ 'increment' ] = 1;
 		}
 
-		$option_type_class = 'dslca-modules-section-edit-option-' . $row_option['type'] . ' ';
+		$option_type_class = 'dslca-modules-section-edit-option-' . $row_option[ 'type' ] . ' ';
 
-		if ( 'color' === $row_option['type'] ) {
+		if ( 'color' === $row_option[ 'type' ] ) {
 			$option_type_class = 'dslca-module-edit-option-color dslca-color-option';
 		}
 
 		?>
-		<div class="dslca-modules-section-edit-option <?php echo esc_attr( $option_type_class ) . esc_attr( $extra_class ); ?>" data-id="<?php echo esc_attr( $row_option['id'] ); ?>">
+		<div class="dslca-modules-section-edit-option <?php echo esc_attr( $option_type_class ) . esc_attr( $extra_class ); ?>" data-id="<?php echo esc_attr( $row_option[ 'id' ] ); ?>">
 
-			<?php if ( isset( $row_option['help'] ) ) : ?>
-				<div class="dslca-module-edit-field-ttip-content"><?php echo $row_option['help']; ?></div>
-				<span class="dslca-module-edit-label"><?php echo esc_html( $row_option['label'] ); echo dslc_get_section_help(); ?></span>
+			<?php if ( isset( $row_option[ 'help' ] ) ) : ?>
+				<div class="dslca-module-edit-field-ttip-content"><?php echo $row_option[ 'help' ]; ?></div>
+				<span class="dslca-module-edit-label"><?php echo esc_html( $row_option[ 'label' ] ); echo dslc_get_section_help(); ?></span>
 			<?php else : ?>
-				<span class="dslca-module-edit-label"><?php echo esc_html( $row_option['label'] ); ?></span>
+				<span class="dslca-module-edit-label"><?php echo esc_html( $row_option[ 'label' ] ); ?></span>
 			<?php endif; ?>
 
-			<?php if ( 'text' === $row_option['type'] ) : ?>
+			<?php if ( 'text' === $row_option[ 'type' ] ) : ?>
 
-				<input type="text" class="dslca-modules-section-edit-field" data-id="<?php echo esc_attr( $row_option['id'] ); ?>" data-css-element="<?php echo esc_attr( $css_element_output ); ?>" data-css-rule="<?php echo esc_attr( $css_rule_output ); ?>" />
+				<input type="text" class="dslca-modules-section-edit-field" data-id="<?php echo esc_attr( $row_option[ 'id' ] ); ?>" data-css-element="<?php echo esc_attr( $css_element_output ); ?>" data-css-rule="<?php echo esc_attr( $css_rule_output ); ?>" />
 
-			<?php elseif ( 'select' === $row_option['type'] ) : ?>
+			<?php elseif ( 'select' === $row_option[ 'type' ] ) : ?>
 
-				<select type="text" class="dslca-modules-section-edit-field dslca-modules-section-edit-field-select" data-id="<?php echo esc_attr( $row_option['id'] ); ?>" data-css-element="<?php echo esc_attr( $css_element_output ); ?>" data-css-rule="<?php echo esc_attr( $css_rule_output ); ?>" >
-					<?php foreach ( $row_option['choices'] as $choice ) : ?>
-						<option value="<?php echo esc_attr( $choice['value'] ); ?>"><?php echo esc_attr( $choice['label'] ); ?></option>
+				<select type="text" class="dslca-modules-section-edit-field dslca-modules-section-edit-field-select" data-id="<?php echo esc_attr( $row_option[ 'id' ] ); ?>" data-css-element="<?php echo esc_attr( $css_element_output ); ?>" data-css-rule="<?php echo esc_attr( $css_rule_output ); ?>" >
+					<?php foreach ( $row_option[ 'choices' ] as $choice ) : ?>
+						<option value="<?php echo esc_attr( $choice[ 'value' ] ); ?>"><?php echo esc_attr( $choice[ 'label' ] ); ?></option>
 					<?php endforeach; ?>
 				</select>
 
-			<?php elseif ( 'color' === $row_option['type'] ) : 
+			<?php elseif ( 'color' === $row_option[ 'type' ] ) : 
 
 				$style = '';
 
@@ -117,33 +117,33 @@ function dslc_row_display_options() {
 					$style = ' style="background: ' . $curr_value . ';"';
 				}?>
 
-				<input type="text" class="dslca-modules-section-edit-field dslca-module-edit-field-colorpicker" data-alpha="true" data-id="<?php echo esc_attr( $row_option['id'] ); ?>" data-css-element="<?php echo esc_attr( $css_element_output ); ?>" data-css-rule="<?php echo esc_attr( $css_rule_output ); ?>" />
+				<input type="text" class="dslca-modules-section-edit-field dslca-module-edit-field-colorpicker" data-alpha="true" data-id="<?php echo esc_attr( $row_option[ 'id' ] ); ?>" data-css-element="<?php echo esc_attr( $css_element_output ); ?>" data-css-rule="<?php echo esc_attr( $css_rule_output ); ?>" />
 
-			<?php elseif ( 'image' === $row_option['type'] ) : ?>
+			<?php elseif ( 'image' === $row_option[ 'type' ] ) : ?>
 
 				<span class="dslca-modules-section-edit-field-image-add-hook"><span class="dslca-icon dslc-icon-cloud-upload"></span><?php esc_html_e( 'Upload Image', 'live-composer-page-builder' ); ?></span>
 				<span class="dslca-modules-section-edit-field-image-remove-hook"><span class="dslca-icon dslc-icon-remove"></span><?php esc_html_e( 'Remove Image', 'live-composer-page-builder' ); ?></span>
-				<input type="hidden" class="dslca-modules-section-edit-field dslca-modules-section-edit-field-upload" data-id="<?php echo esc_attr( $row_option['id'] ); ?>" data-css-element="<?php echo esc_attr( $css_element_output ); ?>" data-css-rule="<?php echo esc_attr( $css_rule_output ); ?>" />
+				<input type="hidden" class="dslca-modules-section-edit-field dslca-modules-section-edit-field-upload" data-id="<?php echo esc_attr( $row_option[ 'id' ] ); ?>" data-css-element="<?php echo esc_attr( $css_element_output ); ?>" data-css-rule="<?php echo esc_attr( $css_rule_output ); ?>" />
 
-			<?php elseif ( 'video' === $row_option['type'] ) : ?>
+			<?php elseif ( 'video' === $row_option[ 'type' ] ) : ?>
 
 				<span class="dslca-modules-section-edit-field-image-add-hook"><span class="dslca-icon dslc-icon-cloud-upload"></span><?php esc_html_e( 'Upload Video', 'live-composer-page-builder' ); ?></span>
 				<span class="dslca-modules-section-edit-field-image-remove-hook"><span class="dslca-icon dslc-icon-remove"></span><?php esc_html_e( 'Remove Video', 'live-composer-page-builder' ); ?></span>
-				<input type="hidden" class="dslca-modules-section-edit-field dslca-modules-section-edit-field-upload" data-id="<?php echo esc_attr( $row_option['id'] ); ?>" data-css-element="<?php echo esc_attr( $css_element_output ); ?>" data-css-rule="<?php echo esc_attr( $css_rule_output ); ?>" />
+				<input type="hidden" class="dslca-modules-section-edit-field dslca-modules-section-edit-field-upload" data-id="<?php echo esc_attr( $row_option[ 'id' ] ); ?>" data-css-element="<?php echo esc_attr( $css_element_output ); ?>" data-css-rule="<?php echo esc_attr( $css_rule_output ); ?>" />
 
-			<?php elseif ( 'slider' === $row_option['type'] ) : ?>
+			<?php elseif ( 'slider' === $row_option[ 'type' ] ) : ?>
 
 				<?php
-					$slider_min = $row_option['min'];
-					$slider_max = $row_option['max'];
-					$slider_increment = $row_option['increment'];
-					$ext = $row_option['ext'];
-					$curr_value = $row_option['std'];
+					$slider_min = $row_option[ 'min' ];
+					$slider_max = $row_option[ 'max' ];
+					$slider_increment = $row_option[ 'increment' ];
+					$ext = $row_option[ 'ext' ];
+					$curr_value = $row_option[ 'std' ];
 
 				?>
-				<input type="number" class="dslca-modules-section-edit-field dslca-modules-section-edit-field-slider-numeric" data-id="<?php echo esc_attr( $row_option['id'] ); ?>" value="<?php echo $curr_value; ?>" data-css-element="<?php echo esc_attr( $css_element_output ); ?>" data-css-rule="<?php echo esc_attr( $css_rule_output ); ?>" data-min="<?php echo $slider_min; ?>" data-max="<?php echo $slider_max; ?>" data-ext="<?php echo $ext; ?>" data-increment="<?php echo esc_attr( $row_option['increment'] ); ?>" data-ext="<?php echo esc_attr( $row_option['ext'] ); ?>"/>
+				<input type="number" class="dslca-modules-section-edit-field dslca-modules-section-edit-field-slider-numeric" data-id="<?php echo esc_attr( $row_option[ 'id' ] ); ?>" value="<?php echo $curr_value; ?>" data-css-element="<?php echo esc_attr( $css_element_output ); ?>" data-css-rule="<?php echo esc_attr( $css_rule_output ); ?>" data-min="<?php echo $slider_min; ?>" data-max="<?php echo $slider_max; ?>" data-ext="<?php echo $ext; ?>" data-increment="<?php echo esc_attr( $row_option[ 'increment' ] ); ?>" data-ext="<?php echo esc_attr( $row_option[ 'ext' ] ); ?>"/>
 
-			<?php elseif ( 'border_checkbox' === $row_option['type'] ) : ?>
+			<?php elseif ( 'border_checkbox' === $row_option[ 'type' ] ) : ?>
 
 				<div class="dslca-modules-section-edit-option-checkbox-wrapper">
 					<div class="dslca-modules-section-edit-option-checkbox-single">
@@ -164,13 +164,13 @@ function dslc_row_display_options() {
 					</div>
 				</div>
 
-			<?php elseif ( 'checkbox' === $row_option['type'] ) : ?>
+			<?php elseif ( 'checkbox' === $row_option[ 'type' ] ) : ?>
 
 				<div class="dslca-modules-section-edit-option-checkbox-wrapper">
-					<?php foreach ( $row_option['choices'] as $choices ) : ?>
+					<?php foreach ( $row_option[ 'choices' ] as $choices ) : ?>
 						<div class="dslca-modules-section-edit-option-checkbox-single">
-							<span class="dslca-modules-section-edit-option-checkbox-hook"><span class="dslca-icon dslc-icon-check-empty"></span><?php echo esc_attr( $choices['label'] ); ?></span>
-							<input type="checkbox" class="dslca-modules-section-edit-field dslca-modules-section-edit-field-checkbox" data-val="<?php echo esc_attr( $choices['value'] ); ?>" data-id="<?php echo esc_attr( $row_option['id'] ); ?>">
+							<span class="dslca-modules-section-edit-option-checkbox-hook"><span class="dslca-icon dslc-icon-check-empty"></span><?php echo esc_attr( $choices[ 'label' ] ); ?></span>
+							<input type="checkbox" class="dslca-modules-section-edit-field dslca-modules-section-edit-field-checkbox" data-val="<?php echo esc_attr( $choices[ 'value' ] ); ?>" data-id="<?php echo esc_attr( $row_option[ 'id' ] ); ?>">
 						</div>
 					<?php endforeach; ?>
 				</div>
@@ -207,35 +207,35 @@ function dslc_row_get_options_fields( $atts = false ) {
 		foreach ( $dslc_var_row_options as $row_option ) {
 
 			// Don't move this line! 'dslca-img-url' should go before 'bg_image'.
-			if ( isset( $atts[ $row_option['id'] ] ) && 'bg_image' === $row_option['id'] ) {
+			if ( isset( $atts[ $row_option[ 'id' ] ] ) && 'bg_image' === $row_option[ 'id' ] ) {
 
-				$output .= '<input type="text" data-id="dslca-img-url" value="' . wp_get_attachment_url( $atts[ $row_option['id'] ] ) . '" data-def="' . wp_get_attachment_url( $atts[ $row_option['id'] ] ) . '">';
+				$output .= '<input type="text" data-id="dslca-img-url" value="' . wp_get_attachment_url( $atts[ $row_option[ 'id' ] ] ) . '" data-def="' . wp_get_attachment_url( $atts[ $row_option[ 'id' ] ] ) . '">';
 			}
 
-			if ( isset( $atts[ $row_option['id'] ] ) ) {
+			if ( isset( $atts[ $row_option[ 'id' ] ] ) ) {
 
-				$output .= '<input type="text" data-id="' . $row_option['id'] . '" value="' . $atts[ $row_option['id'] ] . '" data-def="' . $atts[ $row_option['id'] ] . '">';
+				$output .= '<input type="text" data-id="' . $row_option[ 'id' ] . '" value="' . $atts[ $row_option[ 'id' ] ] . '" data-def="' . $atts[ $row_option[ 'id' ] ] . '">';
 			} else {
 
-				$output .= '<input type="text" data-id="' . $row_option['id'] . '" value="' . $row_option['std'] . '" data-def="' . $row_option['std'] . '">';
+				$output .= '<input type="text" data-id="' . $row_option[ 'id' ] . '" value="' . $row_option[ 'std' ] . '" data-def="' . $row_option[ 'std' ] . '">';
 			}
 		}
 	} else { // If it's a new ROW?
 
 		foreach ( $dslc_var_row_options as $row_option ) {
 
-			if ( ! isset( $row_option['std'] ) ) {
+			if ( ! isset( $row_option[ 'std' ] ) ) {
 
-				$row_option['std'] = '';
+				$row_option[ 'std' ] = '';
 			}
 
 			// Don't move this line! 'dslca-img-url' should go before 'bg_image'.
-			if ( isset( $row_option['id'] ) && 'bg_image' === $row_option['id'] ) {
+			if ( isset( $row_option[ 'id' ] ) && 'bg_image' === $row_option[ 'id' ] ) {
 
-				$output .= '<input type="text" data-id="dslca-img-url" value="' . wp_get_attachment_url( $row_option['std'] ) . '" data-def="' . wp_get_attachment_url( $row_option['std'] ) . '">';
+				$output .= '<input type="text" data-id="dslca-img-url" value="' . wp_get_attachment_url( $row_option[ 'std' ] ) . '" data-def="' . wp_get_attachment_url( $row_option[ 'std' ] ) . '">';
 			}
 
-			$output .= '<input type="text" data-id="' . $row_option['id'] . '" value="' . $row_option['std'] . '">';
+			$output .= '<input type="text" data-id="' . $row_option[ 'id' ] . '" value="' . $row_option[ 'std' ] . '">';
 		}
 	}
 
@@ -264,35 +264,35 @@ function dslc_row_get_style( $atts = false ) {
 	foreach ( $dslc_var_row_options as $row_option ) {
 
 		// If there's an el then it's not for the section div?
-		if ( ! isset( $row_option['affect_on_change_el'] ) ) {
+		if ( ! isset( $row_option[ 'affect_on_change_el' ] ) ) {
 
 			// The CSS rules.
 			$rules = false;
-			if ( isset( $row_option['affect_on_change_rule'] ) ) {
+			if ( isset( $row_option[ 'affect_on_change_rule' ] ) ) {
 
-				$rules = explode( ',', $row_option['affect_on_change_rule'] );
+				$rules = explode( ',', $row_option[ 'affect_on_change_rule' ] );
 			}
 
 			// The CSS value.
 			$value = false;
-			if ( $atts && isset( $atts[ $row_option['id'] ] ) ) {
+			if ( $atts && isset( $atts[ $row_option[ 'id' ] ] ) ) {
 
-				$value = $atts[ $row_option['id'] ];
-			} elseif ( isset( $row_option['std'] ) ) {
+				$value = $atts[ $row_option[ 'id' ] ];
+			} elseif ( isset( $row_option[ 'std' ] ) ) {
 
-				$value = $row_option['std'];
+				$value = $row_option[ 'std' ];
 			}
 
 			$orig_value = $value;
 
 			// The CSS value extension.
-			if ( isset( $row_option['ext'] ) ) {
+			if ( isset( $row_option[ 'ext' ] ) ) {
 
-				$value = $value . $row_option['ext'];
+				$value = $value . $row_option[ 'ext' ];
 			}
 
 			// Border.
-			if ( 'border' === $row_option['id'] ) {
+			if ( 'border' === $row_option[ 'id' ] ) {
 
 				$checkbox_arr = explode( ' ', trim( $value ) );
 
@@ -323,7 +323,7 @@ function dslc_row_get_style( $atts = false ) {
 
 					if ( 'background-image' === $rule ) {
 
-						if ( 'bg_image_thumb' === $row_option['id'] ) {
+						if ( 'bg_image_thumb' === $row_option[ 'id' ] ) {
 
 							if ( 'enabled' === $value ) {
 
@@ -335,7 +335,7 @@ function dslc_row_get_style( $atts = false ) {
 						}
 					}
 
-					if ( ! isset( $row_option['std'] ) || $orig_value !== $row_option['std'] ) {
+					if ( ! isset( $row_option[ 'std' ] ) || $orig_value !== $row_option[ 'std' ] ) {
 
 						$style .= $rule . ':' . $value . ';';
 					}
@@ -366,31 +366,31 @@ function dslc_row_get_initial_style() {
 	foreach ( $dslc_var_row_options as $row_option ) {
 
 		// If there's an el then it's not for the section div.
-		if ( ! isset( $row_option['affect_on_change_el'] ) ) {
+		if ( ! isset( $row_option[ 'affect_on_change_el' ] ) ) {
 
 			// The CSS rules.
 			$rules = false;
-			if ( isset( $row_option['affect_on_change_rule'] ) ) {
+			if ( isset( $row_option[ 'affect_on_change_rule' ] ) ) {
 
-				$rules = explode( ',', $row_option['affect_on_change_rule'] );
+				$rules = explode( ',', $row_option[ 'affect_on_change_rule' ] );
 			}
 
 			// The CSS value.
 			$value = false;
-			if ( isset( $row_option['std'] ) ) {
-				$value = $row_option['std'];
+			if ( isset( $row_option[ 'std' ] ) ) {
+				$value = $row_option[ 'std' ];
 			}
 
 			$orig_value = $value;
 
 			// The CSS value extension.
-			if ( isset( $row_option['ext'] ) ) {
+			if ( isset( $row_option[ 'ext' ] ) ) {
 
-				$value = $value . $row_option['ext'];
+				$value = $value . $row_option[ 'ext' ];
 			}
 
 			// Border.
-			if ( 'border' === $row_option['id'] ) {
+			if ( 'border' === $row_option[ 'id' ] ) {
 
 				$checkbox_arr = explode( ' ', trim( $value ) );
 
@@ -421,7 +421,7 @@ function dslc_row_get_initial_style() {
 
 					if ( 'background-image' === $rule ) {
 
-						if ( 'bg_image_thumb' === $row_option['id'] ) {
+						if ( 'bg_image_thumb' === $row_option[ 'id' ] ) {
 
 							if ( 'enabled' === $value ) {
 

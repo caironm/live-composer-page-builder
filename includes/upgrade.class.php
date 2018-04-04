@@ -20,7 +20,7 @@ final class DSLC_Upgrade {
 		if ( $versions_log && ! is_array( $versions_log ) ) {
 
 			$versions_log = array();
-			$versions_log[] = get_option( 'dslc_version', array() );
+			$versions_log[ ] = get_option( 'dslc_version', array() );
 		}
 
 		if ( is_array( $versions_log ) && ! in_array( '1.3.10', $versions_log ) ) {
@@ -38,7 +38,7 @@ final class DSLC_Upgrade {
 		// Update versions update history with new version.
 		if ( ! in_array( $curr_version, $versions_log ) ) {
 
-			$versions_log[] = $curr_version;
+			$versions_log[ ] = $curr_version;
 
 			usort( $versions_log, 'version_compare' );
 

@@ -567,7 +567,7 @@ class DSLC_TP_Downloads_Button extends DSLC_Module {
 		$dslc_options = array_merge( $dslc_options, $this->presets_options() );
 
 		// Cache calculated array in WP Object Cache.
-		wp_cache_add( 'dslc_options_' . $this->module_id, $dslc_options ,'dslc_modules' );
+		wp_cache_add( 'dslc_options_' . $this->module_id, $dslc_options, 'dslc_modules' );
 
 		return apply_filters( 'dslc_module_options', $dslc_options, $this->module_id );
 
@@ -614,15 +614,15 @@ class DSLC_TP_Downloads_Button extends DSLC_Module {
 					<?php else : ?>
 					<a target="_blank" class="dslc-download-count-hook" data-post-id="<?php echo $post_id; ?>" href="<?php echo $download_link; ?>" download>
 					<?php endif; ?>
-						<?php if ( 'svg' == $options['show_icon'] ) : ?>
-							<?php echo stripslashes( $options['button_inline_svg'] ); ?>
+						<?php if ( 'svg' == $options[ 'show_icon' ] ) : ?>
+							<?php echo stripslashes( $options[ 'button_inline_svg' ] ); ?>
 						<?php else : ?>
-							<span class="dslc-icon dslc-icon-<?php echo $options['button_icon_id']; ?>"></span>	
+							<span class="dslc-icon dslc-icon-<?php echo $options[ 'button_icon_id' ]; ?>"></span>	
 						<?php endif; ?>
 						<?php if ( $dslc_is_admin ) : ?>
-							<span class="dslca-editable-content" data-id="button_text" data-type="simple" <?php if ( $dslc_is_admin ) { echo 'contenteditable';} ?>><?php echo $options['button_text']; ?></span>
+							<span class="dslca-editable-content" data-id="button_text" data-type="simple" <?php if ( $dslc_is_admin ) { echo 'contenteditable'; } ?>><?php echo $options[ 'button_text' ]; ?></span>
 						<?php else : ?>
-							<span><?php echo $options['button_text']; ?></span>
+							<span><?php echo $options[ 'button_text' ]; ?></span>
 						<?php endif; ?>
 					</a>
 				</div><!-- .dslc-download-button -->

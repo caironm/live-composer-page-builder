@@ -614,12 +614,12 @@ class DSLC_Logo extends DSLC_Module {
 		$anchor_target = '_self';
 		$anchor_href = '#';
 
-		if ( 'url_new' === $options['link_type'] ) {
+		if ( 'url_new' === $options[ 'link_type' ] ) {
 			$anchor_target = '_blank';
 		}
 
-		if ( '' !== $options['link_url'] ) {
-			$anchor_href = $options['link_url'];
+		if ( '' !== $options[ 'link_url' ] ) {
+			$anchor_href = $options[ 'link_url' ];
 		}
 
 		?>
@@ -636,23 +636,23 @@ class DSLC_Logo extends DSLC_Module {
 
 				$site_logo_id = get_theme_mod( 'custom_logo' );
 				$site_logo = wp_get_attachment_image_src( $site_logo_id, 'full' );
-				$logo_url = $site_logo['0'];
+				$logo_url = $site_logo[ '0' ];
 
 				$resize = false;
 				$the_image = $logo_url;
 
-				if ( '' != $options['resize_width'] || '' != $options['resize_height'] ) {
+				if ( '' != $options[ 'resize_width' ] || '' != $options[ 'resize_height' ] ) {
 
 					$resize = true;
 					$resize_width = false;
 					$resize_height = false;
 
-					if ( '' != $options['resize_width'] ) {
-						$resize_width = $options['resize_width'];
+					if ( '' != $options[ 'resize_width' ] ) {
+						$resize_width = $options[ 'resize_width' ];
 					}
 
-					if ( '' != $options['resize_height'] ) {
-						$resize_height = $options['resize_height'];
+					if ( '' != $options[ 'resize_height' ] ) {
+						$resize_height = $options[ 'resize_height' ];
 					}
 
 					$the_image = dslc_aq_resize( $logo_url, $resize_width, $resize_height, true );
@@ -660,11 +660,11 @@ class DSLC_Logo extends DSLC_Module {
 
 				?>
 
-				<?php if ( ! empty( $options['link_url'] ) ) : ?>
+				<?php if ( ! empty( $options[ 'link_url' ] ) ) : ?>
 					<a href="<?php echo $anchor_href; ?>" target="<?php echo $anchor_target; ?>">
 				<?php endif; ?>
-					<img src="<?php echo $the_image ?>" alt="<?php echo $options['logo_alt']; ?>" title="<?php echo $options['logo_title']; ?>" />
-				<?php if ( ! empty( $options['link_url'] ) ) : ?>
+					<img src="<?php echo $the_image ?>" alt="<?php echo $options[ 'logo_alt' ]; ?>" title="<?php echo $options[ 'logo_title' ]; ?>" />
+				<?php if ( ! empty( $options[ 'link_url' ] ) ) : ?>
 					</a>
 				<?php endif; ?>
 

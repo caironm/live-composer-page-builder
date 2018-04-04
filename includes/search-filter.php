@@ -27,7 +27,7 @@ if ( ! function_exists( 'dslc_search_filter_join' ) ) {
 
 		global $wp_query, $wpdb;
 
-		if ( is_search() && ! empty( $wp_query->query_vars['s'] ) && strpos( $join, $wpdb->postmeta ) === false ) {
+		if ( is_search() && ! empty( $wp_query->query_vars[ 's' ] ) && strpos( $join, $wpdb->postmeta ) === false ) {
 			$join .= "JOIN $wpdb->postmeta ON $wpdb->posts.ID = $wpdb->postmeta.post_id ";
 		}
 
@@ -53,14 +53,14 @@ if ( ! function_exists( 'dslc_search_filter_request' ) ) {
 		$last_occurence_position = strrpos( $where, '%' );
 
 		// Check if we're on a search page
-		if ( is_search() && false !== $last_occurence_position && ! empty( $wp_query->query_vars['s'] ) ) {
+		if ( is_search() && false !== $last_occurence_position && ! empty( $wp_query->query_vars[ 's' ] ) ) {
 
 			// Get the usual WP checks like post status
 			$end_pos_where = 5 + $last_occurence_position;
 			$request_append = substr( $where, $end_pos_where );
 
 			// Get the search term(s)
-			$user_request = esc_sql( trim( $wp_query->query_vars['s'] ) );
+			$user_request = esc_sql( trim( $wp_query->query_vars[ 's' ] ) );
 
 			// Separate keywords from search terms
 			$user_request_arr = preg_split( '/[\s,]+/', $user_request );
@@ -97,7 +97,7 @@ if ( ! function_exists( 'dslc_search_filter_distinct' ) ) {
 
 		global $wp_query;
 
-		if ( is_search() && ! empty( $wp_query->query_vars['s'] ) ) {
+		if ( is_search() && ! empty( $wp_query->query_vars[ 's' ] ) ) {
 			$distinct .= 'DISTINCT';
 		}
 

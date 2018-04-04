@@ -37,10 +37,10 @@ class LC_Plugins_Updater {
 		$this->api_data    = $_api_data;
 		$this->name        = plugin_basename( $_plugin_file );
 		$this->slug        = basename( $_plugin_file, '.php' );
-		$this->version     = $_api_data['version'];
-		$this->wp_override = isset( $_api_data['wp_override'] ) ? (bool) $_api_data['wp_override'] : false;
-		$this->beta        = ! empty( $this->api_data['beta'] ) ? true : false;
-		$this->cache_key   = 'edd_sl_' . md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) );
+		$this->version     = $_api_data[ 'version' ];
+		$this->wp_override = isset( $_api_data[ 'wp_override' ] ) ? ( bool ) $_api_data[ 'wp_override' ] : false;
+		$this->beta        = ! empty( $this->api_data[ 'beta' ] ) ? true : false;
+		$this->cache_key   = 'edd_sl_' . md5( serialize( $this->slug . $this->api_data[ 'license' ] . $this->beta ) );
 
 		$edd_plugin_data[ $this->slug ] = $this->api_data;
 
@@ -251,7 +251,7 @@ class LC_Plugins_Updater {
 			)
 		);
 
-		$cache_key = 'edd_api_request_' . md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) );
+		$cache_key = 'edd_api_request_' . md5( serialize( $this->slug . $this->api_data[ 'license' ] . $this->beta ) );
 
 		// Get the transient where we store the api request for this plugin for 24 hours
 		$edd_api_request_transient = $this->get_cached_version_info( $cache_key );
@@ -306,7 +306,7 @@ class LC_Plugins_Updater {
 
 		$verify_ssl = $this->verify_ssl();
 		if ( strpos( $url, 'https://' ) !== false && strpos( $url, 'edd_action=package_download' ) ) {
-			$args['sslverify'] = $verify_ssl;
+			$args[ 'sslverify' ] = $verify_ssl;
 		}
 		return $args;
 
@@ -329,24 +329,24 @@ class LC_Plugins_Updater {
 
 		$data = array_merge( $this->api_data, $_data );
 
-		if ( $data['slug'] != $this->slug ) {
+		if ( $data[ 'slug' ] != $this->slug ) {
 			return;
 		}
 
-		if( $this->api_url == trailingslashit (home_url() ) ) {
+		if ( $this->api_url == trailingslashit( home_url() ) ) {
 			return false; // Don't allow a plugin to ping itself
 		}
 
 		$api_params = array(
 			'edd_action' => 'get_version',
-			'license'    => ! empty( $data['license'] ) ? $data['license'] : '',
-			'item_name'  => isset( $data['item_name'] ) ? $data['item_name'] : false,
-			'item_id'    => isset( $data['item_id'] ) ? $data['item_id'] : false,
-			'version'    => isset( $data['version'] ) ? $data['version'] : false,
-			'slug'       => $data['slug'],
-			'author'     => $data['author'],
+			'license'    => ! empty( $data[ 'license' ] ) ? $data[ 'license' ] : '',
+			'item_name'  => isset( $data[ 'item_name' ] ) ? $data[ 'item_name' ] : false,
+			'item_id'    => isset( $data[ 'item_id' ] ) ? $data[ 'item_id' ] : false,
+			'version'    => isset( $data[ 'version' ] ) ? $data[ 'version' ] : false,
+			'slug'       => $data[ 'slug' ],
+			'author'     => $data[ 'author' ],
 			'url'        => home_url(),
-			'beta'       => ! empty( $data['beta'] ),
+			'beta'       => ! empty( $data[ 'beta' ] ),
 		);
 
 		$verify_ssl = $this->verify_ssl();
@@ -379,37 +379,37 @@ class LC_Plugins_Updater {
 
 		global $edd_plugin_data;
 
-		if( empty( $_REQUEST['edd_sl_action'] ) || 'view_plugin_changelog' != $_REQUEST['edd_sl_action'] ) {
+		if ( empty( $_REQUEST[ 'edd_sl_action' ] ) || 'view_plugin_changelog' != $_REQUEST[ 'edd_sl_action' ] ) {
 			return;
 		}
 
-		if( empty( $_REQUEST['plugin'] ) ) {
+		if ( empty( $_REQUEST[ 'plugin' ] ) ) {
 			return;
 		}
 
-		if( empty( $_REQUEST['slug'] ) ) {
+		if ( empty( $_REQUEST[ 'slug' ] ) ) {
 			return;
 		}
 
-		if( ! current_user_can( 'update_plugins' ) ) {
+		if ( ! current_user_can( 'update_plugins' ) ) {
 			wp_die( __( 'You do not have permission to install plugin updates', 'easy-digital-downloads' ), __( 'Error', 'easy-digital-downloads' ), array( 'response' => 403 ) );
 		}
 
-		$data         = $edd_plugin_data[ $_REQUEST['slug'] ];
-		$beta         = ! empty( $data['beta'] ) ? true : false;
-		$cache_key    = md5( 'edd_plugin_' . sanitize_key( $_REQUEST['plugin'] ) . '_' . $beta . '_version_info' );
+		$data         = $edd_plugin_data[ $_REQUEST[ 'slug' ] ];
+		$beta         = ! empty( $data[ 'beta' ] ) ? true : false;
+		$cache_key    = md5( 'edd_plugin_' . sanitize_key( $_REQUEST[ 'plugin' ] ) . '_' . $beta . '_version_info' );
 		$version_info = $this->get_cached_version_info( $cache_key );
 
-		if( false === $version_info ) {
+		if ( false === $version_info ) {
 
 			$api_params = array(
 				'edd_action' => 'get_version',
-				'item_name'  => isset( $data['item_name'] ) ? $data['item_name'] : false,
-				'item_id'    => isset( $data['item_id'] ) ? $data['item_id'] : false,
-				'slug'       => $_REQUEST['slug'],
-				'author'     => $data['author'],
+				'item_name'  => isset( $data[ 'item_name' ] ) ? $data[ 'item_name' ] : false,
+				'item_id'    => isset( $data[ 'item_id' ] ) ? $data[ 'item_id' ] : false,
+				'slug'       => $_REQUEST[ 'slug' ],
+				'author'     => $data[ 'author' ],
 				'url'        => home_url(),
-				'beta'       => ! empty( $data['beta'] )
+				'beta'       => ! empty( $data[ 'beta' ] )
 			);
 
 			$verify_ssl = $this->verify_ssl();
@@ -436,8 +436,8 @@ class LC_Plugins_Updater {
 
 		}
 
-		if( ! empty( $version_info ) && isset( $version_info->sections['changelog'] ) ) {
-			echo '<div style="background:#fff;padding:10px;">' . $version_info->sections['changelog'] . '</div>';
+		if ( ! empty( $version_info ) && isset( $version_info->sections[ 'changelog' ] ) ) {
+			echo '<div style="background:#fff;padding:10px;">' . $version_info->sections[ 'changelog' ] . '</div>';
 		}
 
 		exit;
@@ -445,23 +445,23 @@ class LC_Plugins_Updater {
 
 	public function get_cached_version_info( $cache_key = '' ) {
 
-		if( empty( $cache_key ) ) {
+		if ( empty( $cache_key ) ) {
 			$cache_key = $this->cache_key;
 		}
 
 		$cache = get_option( $cache_key );
 
-		if( empty( $cache['timeout'] ) || current_time( 'timestamp' ) > $cache['timeout'] ) {
+		if ( empty( $cache[ 'timeout' ] ) || current_time( 'timestamp' ) > $cache[ 'timeout' ] ) {
 			return false; // Cache is expired
 		}
 
-		return json_decode( $cache['value'] );
+		return json_decode( $cache[ 'value' ] );
 
 	}
 
 	public function set_version_info_cache( $value = '', $cache_key = '' ) {
 
-		if( empty( $cache_key ) ) {
+		if ( empty( $cache_key ) ) {
 			$cache_key = $this->cache_key;
 		}
 

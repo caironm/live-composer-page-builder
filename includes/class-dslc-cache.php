@@ -61,7 +61,7 @@ class DSLC_Cache {
 				// Disable the caching option in the plugin settings.
 				if ( 'enabled' === $caching_engine_setting ) {
 					$dslc_plugin_options = get_option( 'dslc_plugin_options' );
-					$dslc_plugin_options['lc_caching_engine'] = 'disabled';
+					$dslc_plugin_options[ 'lc_caching_engine' ] = 'disabled';
 					update_option( 'dslc_plugin_options', $dslc_plugin_options );
 				}
 			} else {
@@ -231,7 +231,7 @@ class DSLC_Cache {
  * Function wp_doing_cron were introduced recently 4.8,
  * so we need an aditional check for its existence.
  */
-if ( ( function_exists( 'wp_doing_cron' ) && ! wp_doing_cron() ) && ( ! wp_doing_ajax() || isset( $_POST['dslc_code'] ) ) ) {
+if ( ( function_exists( 'wp_doing_cron' ) && ! wp_doing_cron() ) && ( ! wp_doing_ajax() || isset( $_POST[ 'dslc_code' ] ) ) ) {
 	$site_cache = new DSLC_Cache();
 }
 

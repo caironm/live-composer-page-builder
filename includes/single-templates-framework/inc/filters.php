@@ -103,9 +103,9 @@ function dslc_st_template_switch() {
  */
 function dslc_templates_col_title( $defaults ) {
 
-	unset( $defaults['date'] );
-	$defaults['dslc_templates_col_cpt'] = 'Post Type';
-	$defaults['dslc_templates_col_default'] = '&nbsp;';
+	unset( $defaults[ 'date' ] );
+	$defaults[ 'dslc_templates_col_cpt' ] = 'Post Type';
+	$defaults[ 'dslc_templates_col_default' ] = '&nbsp;';
 	return $defaults;
 
 }
@@ -113,45 +113,45 @@ function dslc_templates_col_title( $defaults ) {
 function dslc_templates_col_content( $column_name, $post_ID ) {
 
 	if ( $column_name == 'dslc_templates_col_cpt' ) {
-		$post_types = get_post_meta( $post_ID, 'dslc_template_for');
+		$post_types = get_post_meta( $post_ID, 'dslc_template_for' );
 
-		foreach ($post_types as $key => $value) {
-			if ( '404_page' === $value) {
-				$post_types[$key] = __('404 – Page Not Found', 'live-composer-page-builder' );
-			} elseif ( 'search_results' === $value) {
-				$post_types[$key] = __('Search Results', 'live-composer-page-builder' );
-			} elseif ( 'author' === $value) {
-				$post_types[$key] = __('Author Archive Page', 'live-composer-page-builder' );
-			} elseif ( 'post' === $value) {
-				$post_types[$key] = __('Blog Post', 'live-composer-page-builder' );
-			} elseif ( 'dslc_projects' === $value) {
-				$post_types[$key] = __('Projects', 'live-composer-page-builder' );
-			} elseif ( 'dslc_staff' === $value) {
-				$post_types[$key] = __('Staff', 'live-composer-page-builder' );
-			} elseif ( 'dslc_partners' === $value) {
-				$post_types[$key] = __('Partners', 'live-composer-page-builder' );
-			} elseif ( 'dslc_downloads' === $value) {
-				$post_types[$key] = __('Downloads', 'live-composer-page-builder' );
-			} elseif ( 'dslc_galleries' === $value) {
-				$post_types[$key] = __('Galleries', 'live-composer-page-builder' );
+		foreach ( $post_types as $key => $value ) {
+			if ( '404_page' === $value ) {
+				$post_types[ $key ] = __( '404 – Page Not Found', 'live-composer-page-builder' );
+			} elseif ( 'search_results' === $value ) {
+				$post_types[ $key ] = __( 'Search Results', 'live-composer-page-builder' );
+			} elseif ( 'author' === $value ) {
+				$post_types[ $key ] = __( 'Author Archive Page', 'live-composer-page-builder' );
+			} elseif ( 'post' === $value ) {
+				$post_types[ $key ] = __( 'Blog Post', 'live-composer-page-builder' );
+			} elseif ( 'dslc_projects' === $value ) {
+				$post_types[ $key ] = __( 'Projects', 'live-composer-page-builder' );
+			} elseif ( 'dslc_staff' === $value ) {
+				$post_types[ $key ] = __( 'Staff', 'live-composer-page-builder' );
+			} elseif ( 'dslc_partners' === $value ) {
+				$post_types[ $key ] = __( 'Partners', 'live-composer-page-builder' );
+			} elseif ( 'dslc_downloads' === $value ) {
+				$post_types[ $key ] = __( 'Downloads', 'live-composer-page-builder' );
+			} elseif ( 'dslc_galleries' === $value ) {
+				$post_types[ $key ] = __( 'Galleries', 'live-composer-page-builder' );
 
-			} elseif ( 'dslc_projects_archive' === $value) {
-				$post_types[$key] = __('Projects Archive', 'live-composer-page-builder' );
-			} elseif ( 'dslc_staff_archive' === $value) {
-				$post_types[$key] = __('Staff Archive', 'live-composer-page-builder' );
-			} elseif ( 'dslc_partners_archive' === $value) {
-				$post_types[$key] = __('Partners Archive', 'live-composer-page-builder' );
-			} elseif ( 'dslc_downloads_archive' === $value) {
-				$post_types[$key] = __('Downloads Archive', 'live-composer-page-builder' );
-			} elseif ( 'dslc_galleries_archive' === $value) {
-				$post_types[$key] = __('Galleries Archive', 'live-composer-page-builder' );
+			} elseif ( 'dslc_projects_archive' === $value ) {
+				$post_types[ $key ] = __( 'Projects Archive', 'live-composer-page-builder' );
+			} elseif ( 'dslc_staff_archive' === $value ) {
+				$post_types[ $key ] = __( 'Staff Archive', 'live-composer-page-builder' );
+			} elseif ( 'dslc_partners_archive' === $value ) {
+				$post_types[ $key ] = __( 'Partners Archive', 'live-composer-page-builder' );
+			} elseif ( 'dslc_downloads_archive' === $value ) {
+				$post_types[ $key ] = __( 'Downloads Archive', 'live-composer-page-builder' );
+			} elseif ( 'dslc_galleries_archive' === $value ) {
+				$post_types[ $key ] = __( 'Galleries Archive', 'live-composer-page-builder' );
 			} elseif ( ! is_string( $value ) ) {
-				unset( $post_types[$key] );
+				unset( $post_types[ $key ] );
 			}
 		}
 
 		$cpt_col_val = '<ul><li> – ';
-		$cpt_col_val .= implode('</li><li> – ', $post_types);
+		$cpt_col_val .= implode( '</li><li> – ', $post_types );
 		$cpt_col_val .= '</li></ul>';
 
 		if ( ! empty( $post_types ) ) {
@@ -186,34 +186,34 @@ function dslc_tp_unique_default( $post_id ) {
 	if ( is_user_logged_in() && current_user_can( DS_LIVE_COMPOSER_CAPABILITY_SAVE ) ) {
 
 		// If no post type ( not really a save action ) stop execution.
-		if ( ! isset( $_POST['post_type'] ) ) {
+		if ( ! isset( $_POST[ 'post_type' ] ) ) {
 			return;
 		}
 
 		// If template type not supplied stop execution.
-		if ( ! isset( $_POST['dslc_template_for'] ) ) {
+		if ( ! isset( $_POST[ 'dslc_template_for' ] ) ) {
 			return;
 		}
 
 		// If template type not supplied stop execution.
-		if ( ! isset( $_REQUEST['dslc_template_type'] ) ) {
+		if ( ! isset( $_REQUEST[ 'dslc_template_type' ] ) ) {
 			return;
 		}
 
 		// If not a template stop execution.
-		$post_type = esc_attr( $_POST['post_type'] );
+		$post_type = esc_attr( $_POST[ 'post_type' ] );
 		if ( 'dslc_templates' !== $post_type ) { return; }
 
 		// If template not default stop execution.
-		$dslc_template_type = esc_attr( $_REQUEST['dslc_template_type'] );
+		$dslc_template_type = esc_attr( $_REQUEST[ 'dslc_template_type' ] );
 		if ( 'default' !== $dslc_template_type ) { return; }
 
 		// Make dslc_template_for an array even if it's string (for easier processing).
 		$dslc_template_for = array();
-		if ( ! is_array( $_POST['dslc_template_for'] ) ) {
-			$dslc_template_for[] = $_POST['dslc_template_for'];
+		if ( ! is_array( $_POST[ 'dslc_template_for' ] ) ) {
+			$dslc_template_for[ ] = $_POST[ 'dslc_template_for' ];
 		} else {
-			$dslc_template_for = $_POST['dslc_template_for'];
+			$dslc_template_for = $_POST[ 'dslc_template_for' ];
 		}
 
 		// Get templates ( if any ) in same CPT that are default.
@@ -319,7 +319,7 @@ function dslc_tp_update_archive_templates_option( $post_id ) {
 		if ( $plugin_options ) {
 			foreach ( $plugin_options as $key => $value ) {
 				if ( ! is_array( $value ) && strval( $value ) === strval( $post_id ) ) {
-					$this_template_in_options[] = $key;
+					$this_template_in_options[ ] = $key;
 				}
 			}
 		}

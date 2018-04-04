@@ -37,7 +37,7 @@ class DSLC_TP_Gallery_Slider extends DSLC_Module {
 
 		foreach ( $posts_galleries as $post ) {
 
-			$posts_list[] = array(
+			$posts_list[ ] = array(
 				'label' => $post->post_title,
 				'value' => $post->ID,
 			);
@@ -974,9 +974,9 @@ class DSLC_TP_Gallery_Slider extends DSLC_Module {
 
 		if ( is_singular() && get_post_type() !== 'dslc_templates' ) {
 
-			if ( intval( $options['gallery_post_id'] ) > 0 ) {
+			if ( intval( $options[ 'gallery_post_id' ] ) > 0 ) {
 
-				$gallery_images = get_post_meta( intval( $options['gallery_post_id'] ), 'dslc_gallery_images', true );
+				$gallery_images = get_post_meta( intval( $options[ 'gallery_post_id' ] ), 'dslc_gallery_images', true );
 
 			} else {
 
@@ -999,7 +999,7 @@ class DSLC_TP_Gallery_Slider extends DSLC_Module {
 		if ( $show_placeholder || $show_real ) {
 
 			$img_class = '';
-			if ( $options['lightbox_state'] == 'enabled' ) {
+			if ( $options[ 'lightbox_state' ] == 'enabled' ) {
 				$img_class = 'dslc-trigger-lightbox-gallery';
 			}
 
@@ -1011,7 +1011,7 @@ class DSLC_TP_Gallery_Slider extends DSLC_Module {
 
 					<div class="dslc-loader"></div>
 
-					<div class="dslc-slider"  data-animation="<?php echo $options['animation']; ?>" data-animation-speed="<?php echo $options['animation_speed']; ?>" data-autoplay="<?php echo $options['autoplay']; ?>" data-flexible-height="<?php echo $options['flexible_height']; ?>">
+					<div class="dslc-slider"  data-animation="<?php echo $options[ 'animation' ]; ?>" data-animation-speed="<?php echo $options[ 'animation_speed' ]; ?>" data-autoplay="<?php echo $options[ 'autoplay' ]; ?>" data-flexible-height="<?php echo $options[ 'flexible_height' ]; ?>">
 
 						<?php
 
@@ -1025,7 +1025,7 @@ class DSLC_TP_Gallery_Slider extends DSLC_Module {
 							foreach ( $gallery_images as $gallery_image ) {
 
 								$gallery_image_src = wp_get_attachment_image_src( $gallery_image, 'full' );
-								$gallery_image_src = $gallery_image_src[0];
+								$gallery_image_src = $gallery_image_src[ 0 ];
 
 								$thumb_alt = get_post_meta( $gallery_image, '_wp_attachment_image_alt', true );
 								if ( ! $thumb_alt ) { $thumb_alt = '';
@@ -1040,7 +1040,7 @@ class DSLC_TP_Gallery_Slider extends DSLC_Module {
 
 							</div><!-- .dslc-slider -->
 
-							<?php if ( ! $show_placeholder && $options['lightbox_state'] == 'enabled' ) : ?>
+							<?php if ( ! $show_placeholder && $options[ 'lightbox_state' ] == 'enabled' ) : ?>
 
 								<div class="dslc-lightbox-gallery">
 
@@ -1048,7 +1048,7 @@ class DSLC_TP_Gallery_Slider extends DSLC_Module {
 
 										<?php
 											$gallery_image_src = wp_get_attachment_image_src( $gallery_image, 'full' );
-											$gallery_image_src = $gallery_image_src[0];
+											$gallery_image_src = $gallery_image_src[ 0 ];
 
 											$gallery_image_title = get_post_meta( $gallery_image, '_wp_attachment_image_alt', true );
 										if ( ! $gallery_image_title ) { $gallery_image_title = '';

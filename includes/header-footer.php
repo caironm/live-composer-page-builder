@@ -75,7 +75,7 @@ function dslc_hf_init() {
 	 */
 
 	global $dslc_var_post_options;
-	$dslc_var_post_options['dslc-hf-opts'] = array(
+	$dslc_var_post_options[ 'dslc-hf-opts' ] = array(
 		'title' => 'Options',
 		'show_on' => 'dslc_hf',
 		'options' => array(
@@ -164,10 +164,10 @@ function dslc_hf_col_title( $defaults ) {
 		return;
 	}
 
-	unset( $defaults['date'] );
-	unset( $defaults['author'] );
-	$defaults['dslc_hf_col_cpt'] = 'For';
-	$defaults['dslc_hf_col_default'] = 'Type';
+	unset( $defaults[ 'date' ] );
+	unset( $defaults[ 'author' ] );
+	$defaults[ 'dslc_hf_col_cpt' ] = 'For';
+	$defaults[ 'dslc_hf_col_default' ] = 'Type';
 	return $defaults;
 
 } add_filter( 'manage_dslc_hf_posts_columns', 'dslc_hf_col_title', 5 );
@@ -209,22 +209,22 @@ function dslc_hf_unique_default( $post_id ) {
 	}
 
 	// If no post type ( not really a save action ) stop execution.
-	if ( ! isset( $_POST['post_type'] ) ) {
+	if ( ! isset( $_POST[ 'post_type' ] ) ) {
 		return;
 	}
 
 	// If not a header/footer stop execution.
-	if ( 'dslc_hf' !== $_POST['post_type'] ) {
+	if ( 'dslc_hf' !== $_POST[ 'post_type' ] ) {
 		return;
 	}
 
 	// If template type not supplied stop execution
-	if ( ! isset( $_REQUEST['dslc_hf_type'] ) ) {
+	if ( ! isset( $_REQUEST[ 'dslc_hf_type' ] ) ) {
 		return;
 	}
 
 	// If template not default stop execution
-	if ( 'default' !== $_REQUEST['dslc_hf_type'] ) {
+	if ( 'default' !== $_REQUEST[ 'dslc_hf_type' ] ) {
 		return;
 	}
 
@@ -236,7 +236,7 @@ function dslc_hf_unique_default( $post_id ) {
 		'meta_query' => array(
 			array(
 				'key' => 'dslc_hf_for',
-				'value' => $_POST['dslc_hf_for'],
+				'value' => $_POST[ 'dslc_hf_for' ],
 				'compare' => '=',
 			),
 			array(
@@ -275,20 +275,20 @@ function dslc_hf_options() {
 	}
 
 	$headers_array = array();
-	$headers_array[] = array(
+	$headers_array[ ] = array(
 		'label' => 'Default',
 		'value' => 'default',
 	);
-	$headers_array[] = array(
+	$headers_array[ ] = array(
 		'label' => 'Disabled',
 		'value' => '_disabled_',
 	);
 	$footers_array = array();
-	$footers_array[] = array(
+	$footers_array[ ] = array(
 		'label' => 'Default',
 		'value' => 'default',
 	);
-	$footers_array[] = array(
+	$footers_array[ ] = array(
 		'label' => 'Disabled',
 		'value' => '_disabled_',
 	);
@@ -309,19 +309,19 @@ function dslc_hf_options() {
 		foreach ( $templates as $template ) {
 			$template_for = get_post_meta( $template->ID, 'dslc_hf_for', true );
 			if ( 'header' === $template_for ) {
-				$headers_array[] = array(
+				$headers_array[ ] = array(
 					'label' => $template->post_title,
 					'value' => $template->ID,
 				);
 			} elseif ( 'footer' === $template_for ) {
-				$footers_array[] = array(
+				$footers_array[ ] = array(
 					'label' => $template->post_title,
 					'value' => $template->ID,
 				);
 			}
 		}
 
-		$dslc_var_post_options['dslc-hf-options'] = array(
+		$dslc_var_post_options[ 'dslc-hf-options' ] = array(
 			'title' => __( 'Header/Footer', 'live-composer-page-builder' ),
 			'show_on' => array( 'page', 'dslc_templates' ),
 			'context' => 'side',
@@ -437,7 +437,7 @@ function dslc_hf_get_ID( $post_id = false ) {
 
 		// If default template found set the ID if not make it false
 		if ( $tpls ) {
-			$header_tpl_id = $tpls[0]->ID;
+			$header_tpl_id = $tpls[ 0 ]->ID;
 		} else {
 			$header_tpl_id = false;
 		}
@@ -477,7 +477,7 @@ function dslc_hf_get_ID( $post_id = false ) {
 
 		// If default template found set the ID if not make it false.
 		if ( $tpls ) {
-			$footer_tpl_id = $tpls[0]->ID;
+			$footer_tpl_id = $tpls[ 0 ]->ID;
 		} else {
 			$footer_tpl_id = false;
 		}
@@ -596,16 +596,16 @@ function dslc_hf_get_headerfooter( $post_id = false, $hf_type = 'header' ) {
 		$editing_parametters .= ' data-editing-type="' . $hf_type . '"';
 
 		if ( 'header' === $hf_type ) {
-			$editing_parametters .= ' data-editing-label="' . __( 'Edit Header','live-composer-page-builder' ) . '"';
+			$editing_parametters .= ' data-editing-label="' . __( 'Edit Header', 'live-composer-page-builder' ) . '"';
 		} else {
-			$editing_parametters .= ' data-editing-label="' . __( 'Edit Footer','live-composer-page-builder' ) . '"';
+			$editing_parametters .= ' data-editing-label="' . __( 'Edit Footer', 'live-composer-page-builder' ) . '"';
 		}
 
 		// ============================================================
 		if ( 'fixed' === $position ) {
-			$editing_parametters .= ' data-editing-sublabel="' . __( 'To preview FIXED positioning click on "Hide Editor" button.','live-composer-page-builder' ) . '"';
+			$editing_parametters .= ' data-editing-sublabel="' . __( 'To preview FIXED positioning click on "Hide Editor" button.', 'live-composer-page-builder' ) . '"';
 		} elseif ( 'absolute' === $position ) {
-			$editing_parametters .= ' data-editing-sublabel="' . __( 'To preview ABSOLUTE positioning click on "Hide Editor" button.','live-composer-page-builder' ) . '"';
+			$editing_parametters .= ' data-editing-sublabel="' . __( 'To preview ABSOLUTE positioning click on "Hide Editor" button.', 'live-composer-page-builder' ) . '"';
 		}
 	}
 
@@ -708,7 +708,7 @@ function dslc_hf_get_footer( $post_id = false ) {
  * @return void
  */
 function dslc_redirect_from_hf_posts() {
-	if ( is_singular( 'dslc_hf' ) && ( ! is_user_logged_in() || ! current_user_can( DS_LIVE_COMPOSER_CAPABILITY )) ) {
+	if ( is_singular( 'dslc_hf' ) && ( ! is_user_logged_in() || ! current_user_can( DS_LIVE_COMPOSER_CAPABILITY ) ) ) {
 		wp_safe_redirect( get_home_url() );
 		exit;
 	}

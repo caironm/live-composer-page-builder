@@ -53,14 +53,14 @@ class DSLC_Navigation extends DSLC_Module {
 		$locs = get_registered_nav_menus();
 
 		$loc_choices = array();
-		$loc_choices[] = array(
+		$loc_choices[ ] = array(
 			'label' => __( 'Choose Navigation', 'live-composer-page-builder' ),
 			'value' => 'not_set',
 		);
 
 		if ( ! empty( $locs ) ) {
 			foreach ( $locs as $loc_id => $loc_label ) {
-				$loc_choices[] = array(
+				$loc_choices[ ] = array(
 					'label' => $loc_label,
 					'value' => $loc_id,
 				);
@@ -1571,13 +1571,13 @@ class DSLC_Navigation extends DSLC_Module {
 			$dslc_is_admin = false;
 		}
 
-		if ( 'not_set' === $options['location'] ) {
+		if ( 'not_set' === $options[ 'location' ] ) {
 
 			if ( $dslc_is_admin ) {
 
 				?><div class="dslc-notification dslc-red"><?php esc_attr_e( 'Edit the module and choose which location to show.', 'live-composer-page-builder' ); ?> <span class="dslca-refresh-module-hook dslc-icon dslc-icon-refresh"></span></span></div><?php
 			}
-		} elseif ( ! has_nav_menu( $options['location'] ) ) {
+		} elseif ( ! has_nav_menu( $options[ 'location' ] ) ) {
 
 			if ( $dslc_is_admin ) {
 
@@ -1585,14 +1585,14 @@ class DSLC_Navigation extends DSLC_Module {
 			}
 		} else {
 			?>
-			<div class="dslc-navigation dslc-navigation-sub-position-<?php echo esc_attr( $options['css_subnav_position'] ); ?> dslc-navigation-res-t-<?php echo esc_attr( $options['css_res_t'] ); ?> dslc-navigation-res-p-<?php echo esc_attr( $options['css_res_p'] ); ?> dslc-navigation-orientation-<?php echo esc_attr( $options['nav_orientation'] ); ?>">
+			<div class="dslc-navigation dslc-navigation-sub-position-<?php echo esc_attr( $options[ 'css_subnav_position' ] ); ?> dslc-navigation-res-t-<?php echo esc_attr( $options[ 'css_res_t' ] ); ?> dslc-navigation-res-p-<?php echo esc_attr( $options[ 'css_res_p' ] ); ?> dslc-navigation-orientation-<?php echo esc_attr( $options[ 'nav_orientation' ] ); ?>">
 				<div class="dslc-navigation-inner">
-					[dslc_nav_render_menu theme_location="<?php echo $options['location'] ?>"]
+					[dslc_nav_render_menu theme_location="<?php echo $options[ 'location' ] ?>"]
 					<?php // wp_nav_menu( array( 'theme_location' => $options['location'] ) ); ?>
 				</div>
 			</div>
-			<div class="dslc-mobile-navigation dslc-navigation-res-t-<?php echo esc_attr( $options['css_res_t'] ); ?>  dslc-navigation-res-p-<?php echo esc_attr( $options['css_res_p'] ); ?>">
-				[dslc_nav_render_mobile_menu theme_location="<?php echo $options['location'] ?>"]
+			<div class="dslc-mobile-navigation dslc-navigation-res-t-<?php echo esc_attr( $options[ 'css_res_t' ] ); ?>  dslc-navigation-res-p-<?php echo esc_attr( $options[ 'css_res_p' ] ); ?>">
+				[dslc_nav_render_mobile_menu theme_location="<?php echo $options[ 'location' ] ?>"]
 				<div class="dslc-mobile-navigation-hook"><span class="dslc-icon dslc-icon-reorder"></span></div>
 			</div><!-- .dslc-mobile-navigation -->
 

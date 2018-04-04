@@ -80,7 +80,7 @@ function dslc_plugin_options_display( $tab = '' ) {
 		<?php
 		settings_errors();
 
-		$anchor = sanitize_text_field( @$_GET['anchor'] );
+		$anchor = sanitize_text_field( @$_GET[ 'anchor' ] );
 		$anchor = '' !== $anchor ? $anchor : 'dslc_extensions';
 
 		?>
@@ -168,7 +168,7 @@ function dslc_plugin_options_init() {
 
 		add_settings_section(
 			$section_id,
-			$section['title'],
+			$section[ 'title' ],
 			'dslc_plugin_options_display_options',
 			$section_id
 		);
@@ -179,16 +179,16 @@ function dslc_plugin_options_init() {
 			'dslc_plugin_options_input_sanitize'// Sanitize.
 		);
 
-		foreach ( $section['options'] as $option_id => $option ) {
+		foreach ( $section[ 'options' ] as $option_id => $option ) {
 
-			$option['id'] = $option_id;
+			$option[ 'id' ] = $option_id;
 
-			if ( ! isset( $option['section'] ) ) {
+			if ( ! isset( $option[ 'section' ] ) ) {
 
-				$option['section'] = $section_id;
+				$option[ 'section' ] = $section_id;
 			}
 
-			$option['name'] = 'dslc_plugin_options[' . $option['id'] . ']';
+			$option[ 'name' ] = 'dslc_plugin_options[' . $option[ 'id' ] . ']';
 
 			$value = '';
 			$options = get_option( 'dslc_plugin_options' );
@@ -209,16 +209,16 @@ function dslc_plugin_options_init() {
 
 				if ( '' === $value ) {
 
-					$value = $option['std'];
+					$value = $option[ 'std' ];
 				}
 			}
 
-			$option['value'] = $value;
+			$option[ 'value' ] = $value;
 
 			add_settings_field(
 
 				$option_id, // Id.
-				$option['label'], // Title.
+				$option[ 'label' ], // Title.
 				'dslc_option_display_funcitons_router', // Callback.
 				$section_id, // Page.
 				$section_id, // Section.
@@ -236,19 +236,19 @@ function dslc_plugin_options_init() {
  * @return void
  */
 function dslc_option_display_funcitons_router( $option ) {
-	if ( 'text' === $option['type'] ) {
+	if ( 'text' === $option[ 'type' ] ) {
 		dslc_plugin_option_display_text( $option );
-	} elseif ( 'textarea' === $option['type'] ) {
+	} elseif ( 'textarea' === $option[ 'type' ] ) {
 		dslc_plugin_option_display_textarea( $option );
-	} elseif ( 'select' === $option['type'] ) {
+	} elseif ( 'select' === $option[ 'type' ] ) {
 		dslc_plugin_option_display_select( $option );
-	} elseif ( 'checkbox' === $option['type'] ) {
+	} elseif ( 'checkbox' === $option[ 'type' ] ) {
 		dslc_plugin_option_display_checkbox( $option );
-	} elseif ( 'list' === $option['type'] ) {
+	} elseif ( 'list' === $option[ 'type' ] ) {
 		dslc_plugin_option_display_list( $option );
-	} elseif ( 'radio' === $option['type'] ) {
+	} elseif ( 'radio' === $option[ 'type' ] ) {
 		dslc_plugin_option_display_radio( $option );
-	} elseif ( 'styling_presets' === $option['type'] ) {
+	} elseif ( 'styling_presets' === $option[ 'type' ] ) {
 		dslc_plugin_option_display_styling_presets( $option );
 	}
 }
@@ -264,7 +264,7 @@ function dslc_option_display_funcitons_router( $option ) {
  * @param section $section Docs section.
  */
 function dslc_plugin_options_display_options( $section ) {
-	echo apply_filters( 'dslc_filter_section_description', '', $section['id'] );
+	echo apply_filters( 'dslc_filter_section_description', '', $section[ 'id' ] );
 }
 
 /**

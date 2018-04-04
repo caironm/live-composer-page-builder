@@ -526,7 +526,7 @@ class DSLC_TP_Excerpt extends DSLC_Module {
 
 		global $dslc_active;
 
-		$post_id = $options['post_id'];
+		$post_id = $options[ 'post_id' ];
 
 		if ( $dslc_active && is_user_logged_in() && current_user_can( DS_LIVE_COMPOSER_CAPABILITY ) ) {
 			$dslc_is_admin = true;

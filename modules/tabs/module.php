@@ -3536,12 +3536,12 @@ class DSLC_Tabs extends DSLC_Module {
 
 		/* Module output stars here */
 
-			$tabs_nav = explode( '(dslc_sep)', trim( $options['tabs_nav'] ) );
-			$tabs_content = explode( '(dslc_sep)', trim( $options['tabs_content'] ) );
+			$tabs_nav = explode( '(dslc_sep)', trim( $options[ 'tabs_nav' ] ) );
+			$tabs_content = explode( '(dslc_sep)', trim( $options[ 'tabs_content' ] ) );
 
 		?>
 
-			<div class="dslc-tabs dslc-tabs-nav-pos-<?php echo $options['css_nav_position']; ?>">
+			<div class="dslc-tabs dslc-tabs-nav-pos-<?php echo $options[ 'css_nav_position' ]; ?>">
 
 				<div class="dslc-tabs-nav dslc-clearfix">
 

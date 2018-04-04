@@ -5,16 +5,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-function dslc_sort_by_rank($a, $b) {
+function dslc_sort_by_rank( $a, $b ) {
 	$a_rank = 0;
 	$b_rank = 0;
 
-	if ( isset( $a['rank'] ) ) {
-		$a_rank = $a['rank'];
+	if ( isset( $a[ 'rank' ] ) ) {
+		$a_rank = $a[ 'rank' ];
 	}
 
-	if ( isset( $b['rank'] ) ) {
-		$b_rank = $b['rank'];
+	if ( isset( $b[ 'rank' ] ) ) {
+		$b_rank = $b[ 'rank' ];
 	}
 
 	return $a_rank - $b_rank;
@@ -23,7 +23,7 @@ function dslc_sort_by_rank($a, $b) {
 $extensions = array();
 $extensions = apply_filters( 'dslc_extensions_meta', $extensions );
 
-$today_day = strtoupper( strftime( "%A",time() ) );
+$today_day = strtoupper( strftime( "%A", time() ) );
 
 ?>
 <div class="wrap lc-admin-tab-content lc-wrap lc-centered-panels lc-wider-panel lc-tab-extensions">
@@ -47,7 +47,7 @@ if ( empty( $extensions ) ) : ?>
 	<div class="dslc-panel lc-divided-panels padding-medium">
 		<div class="lc-panel-half">
 			<h3 class="lc-huge margin-top-half"><?php _e( 'Advanced, time-saving features for professional website development', 'live-composer-page-builder' ); ?></h3>
-			<p class="lc-larger-text"><?php _e( 'Build feature-reach websites faster with our premium extensions. All add-ons are packed into a single plugin for easy management and updates.' , 'live-composer-page-builder'); ?></p>
+			<p class="lc-larger-text"><?php _e( 'Build feature-reach websites faster with our premium extensions. All add-ons are packed into a single plugin for easy management and updates.', 'live-composer-page-builder' ); ?></p>
 			<p><a href="https://livecomposerplugin.com/downloads/extensions/?utm_source=wp-admin&utm_medium=extension-tab&utm_campaign=intro-block" class="button button-primary button-hero" target="_blank">Buy Today For 15% OFF</a> <br /><span class="promo-code">Promo code: <strong>HAPPY-<?php echo $today_day; ?></strong></span></p>
 		</div>
 		<div class="lc-panel-half lc-image-column">
@@ -59,7 +59,7 @@ if ( empty( $extensions ) ) : ?>
 // LICENSE PANEL: If extension is active.
 if ( $extensions && is_plugin_active( 'lc-extensions/lc-extensions.php' ) ) {
 	$license_manager = new LC_License_Manager;
-	$license_status = $license_manager->get_license_status('lc-extensions');
+	$license_status = $license_manager->get_license_status( 'lc-extensions' );
 
 	if ( 'valid' !== $license_status ) {
 		$license_status = 'invalid';
@@ -68,12 +68,12 @@ if ( $extensions && is_plugin_active( 'lc-extensions/lc-extensions.php' ) ) {
 	echo '<div data-license-status="' . $license_status . '">';
 		// Top license block (shows when issues or no license set).
 		echo '<div data-show-if-license="invalid">';
-			echo $license_manager->render_license_block('lc-extensions');
+			echo $license_manager->render_license_block( 'lc-extensions' );
 		echo '</div>';
 
 		// Tab heading (shows only when there is no problem with license).
 		echo '<div class="lc-tab-heading" data-show-if-license="valid">';
-		echo '<h1 class="wp-heading-inline">' . __('Premium Extensions', 'live-composer-page-builder') . ' <span class="title-count theme-count">' . count( $extensions ) . '</span> </h1>';
+		echo '<h1 class="wp-heading-inline">' . __( 'Premium Extensions', 'live-composer-page-builder' ) . ' <span class="title-count theme-count">' . count( $extensions ) . '</span> </h1>';
 		echo '<a href="#lc-license-block" class="button lc-license-status-button"><span class="dashicons dashicons-yes"></span> License is acitve</a>';
 		echo '</div>';
 	echo '</div>';
@@ -191,34 +191,34 @@ if ( $extensions && is_plugin_active( 'lc-extensions/lc-extensions.php' ) ) {
 				foreach ( $extensions as $extension_id => $extension ) {
 
 					$extension_thumbnail = DS_LIVE_COMPOSER_URL . 'images/lc-placeholder.png';
-					if ( isset( $extension['thumbnail'] ) && !empty( $extension['thumbnail'] ) ) {
-						$extension_thumbnail = $extension['thumbnail'];
+					if ( isset( $extension[ 'thumbnail' ] ) && ! empty( $extension[ 'thumbnail' ] ) ) {
+						$extension_thumbnail = $extension[ 'thumbnail' ];
 					}
 
 					$extensions_status_att = 'inactive';
 
-					if ( isset( $extension['active'] ) && $extension['active'] ) {
+					if ( isset( $extension[ 'active' ] ) && $extension[ 'active' ] ) {
 						$extensions_status_att = 'active';
 					}
 
-					if ( isset( $extension['demo'] ) && $extension['demo'] ) {
+					if ( isset( $extension[ 'demo' ] ) && $extension[ 'demo' ] ) {
 						$extensions_status_att = 'demo';
 					}
 					?>
 						<div class="extension <?php echo 'extension-' . $extension_id?>" data-extension-status="<?php echo $extensions_status_att; ?>" tabindex="0" >
 							<div class="extension-screenshot">
-								<img alt="<?php echo $extension['title']; ?>" src="<?php echo $extension_thumbnail; ?>">
-								<p class="more-details"><?php echo $extension['description']; ?></p>
+								<img alt="<?php echo $extension[ 'title' ]; ?>" src="<?php echo $extension_thumbnail; ?>">
+								<p class="more-details"><?php echo $extension[ 'description' ]; ?></p>
 							</div>
 
-							<h2 class="extension-name"><?php echo $extension['title']; ?>
+							<h2 class="extension-name"><?php echo $extension[ 'title' ]; ?>
 								<span class="status" data-show-if="active"><span class="dashicons dashicons-yes"></span> active</span>
 								<span class="status" data-show-if="inactive"><span class="dashicons dashicons-no-alt"></span> inactive</span>
 								<span class="status" data-show-if="pending"><span class="dashicons dashicons-update"></span></span>
 							</h2>
 
 							<div class="extension-actions">
-								<a href="<?php echo $extension['details']; ?>?utm_source=wp-admin&utm_medium=extension-tab&utm_campaign=<?php echo $extension_id; ?>" target="_blank" class="button button-secondary activate">More Details</a>
+								<a href="<?php echo $extension[ 'details' ]; ?>?utm_source=wp-admin&utm_medium=extension-tab&utm_campaign=<?php echo $extension_id; ?>" target="_blank" class="button button-secondary activate">More Details</a>
 
 								<a href="#" class="button button-primary lc-toggle-extension" data-show-if="active" data-id="<?php echo $extension_id; ?>">Deactivate</a>
 								<a href="#" class="button button-primary lc-toggle-extension" data-show-if="inactive" data-id="<?php echo $extension_id; ?>">Activate</a>
@@ -237,7 +237,7 @@ if ( $extensions && is_plugin_active( 'lc-extensions/lc-extensions.php' ) ) {
 // LICENSE PANEL: If extension is active.
 if ( $extensions && is_plugin_active( 'lc-extensions/lc-extensions.php' ) ) {
 	$license_manager = new LC_License_Manager;
-	$license_status = $license_manager->get_license_status('lc-extensions');
+	$license_status = $license_manager->get_license_status( 'lc-extensions' );
 
 	if ( 'valid' !== $license_status ) {
 		$license_status = 'invalid';
@@ -248,7 +248,7 @@ if ( $extensions && is_plugin_active( 'lc-extensions/lc-extensions.php' ) ) {
 		echo '<a name="lc-license-block"></a>';
 		// Output license block on the bottom when no issues with license detected.
 		echo '<div data-show-if-license="valid">';
-			echo $license_manager->render_license_block('lc-extensions');
+			echo $license_manager->render_license_block( 'lc-extensions' );
 		echo '</div>';
 	echo '</div>';
 }

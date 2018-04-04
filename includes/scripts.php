@@ -60,11 +60,11 @@ final class DSLC_Scripts {
 			foreach ( $dslc_var_icon_fonts as $key => $font_details ) {
 				$version_stamp = DS_LIVE_COMPOSER_VER;
 
-				if ( isset( $font_details['version'] ) ) {
-					$version_stamp = $font_details['version'];
+				if ( isset( $font_details[ 'version' ] ) ) {
+					$version_stamp = $font_details[ 'version' ];
 				}
 
-				wp_enqueue_style( 'dslc-' . $key, $font_details['font_path'], array(), $version_stamp );
+				wp_enqueue_style( 'dslc-' . $key, $font_details[ 'font_path' ], array(), $version_stamp );
 				// wp_enqueue_style( 'dslc-font-awesome', DS_LIVE_COMPOSER_URL . 'css/font-awesome.css', array(), DS_LIVE_COMPOSER_VER );
 			}
 		}
@@ -360,7 +360,7 @@ final class DSLC_Scripts {
 	 */
 	public static function dslc_load_fonts() {
 
-		if ( isset( $_GET['dslc'] ) ) {
+		if ( isset( $_GET[ 'dslc' ] ) ) {
 
 			wp_enqueue_style( 'dslc-gf-opensans', '//fonts.googleapis.com/css?family=Open+Sans:400,600' );
 			wp_enqueue_style( 'dslc-gf-roboto-condesed', '//fonts.googleapis.com/css?family=Roboto+Condensed:400,900' );

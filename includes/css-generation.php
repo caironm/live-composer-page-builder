@@ -157,22 +157,22 @@ function dslc_custom_css( $dslc_code = '' ) {
 		$footer_id = false;
 
 		// Header.
-		if ( $header_footer['header'] ) {
-			$header_code = get_post_meta( $header_footer['header'], 'dslc_code', true );
+		if ( $header_footer[ 'header' ] ) {
+			$header_code = get_post_meta( $header_footer[ 'header' ], 'dslc_code', true );
 
 			if ( $header_code ) {
-				$code_to_render[ $header_footer['header'] ] = $header_code;
-				$header_id = $header_footer['header'];
+				$code_to_render[ $header_footer[ 'header' ] ] = $header_code;
+				$header_id = $header_footer[ 'header' ];
 			}
 		}
 
 		// Footer.
-		if ( $header_footer['footer'] ) {
-			$footer_code = get_post_meta( $header_footer['footer'], 'dslc_code', true );
+		if ( $header_footer[ 'footer' ] ) {
+			$footer_code = get_post_meta( $header_footer[ 'footer' ], 'dslc_code', true );
 
 			if ( $footer_code ) {
-				$code_to_render[ $header_footer['footer'] ] = $footer_code;
-				$footer_id = $header_footer['footer'];
+				$code_to_render[ $header_footer[ 'footer' ] ] = $footer_code;
+				$footer_id = $header_footer[ 'footer' ];
 			}
 		}
 
@@ -295,9 +295,9 @@ function dslc_render_css( $code ) {
 		// Go though ROWs.
 		foreach ( $code_array as $row ) {
 			// Go through each Module Area.
-			foreach ( $row['content'] as $module_area ) {
+			foreach ( $row[ 'content' ] as $module_area ) {
 				// Go through each Module.
-				foreach ( $module_area['content'] as $module ) {
+				foreach ( $module_area[ 'content' ] as $module ) {
 					$css_output .= dslc_module_gen_css( array(), $module );
 				}
 			}
@@ -377,10 +377,10 @@ function dslc_module_gen_css( $atts, $settings_raw ) {
 	if ( is_array( $settings ) ) {
 
 		// The ID of the module.
-		$module_id = $settings['module_id'];
+		$module_id = $settings[ 'module_id' ];
 
 		// Check if we have cached css for this module?
-		$module_instance_id = $settings['module_instance_id'];
+		$module_instance_id = $settings[ 'module_instance_id' ];
 
 		// Check if module exists.
 		if ( ! dslc_is_module_active( $module_id ) ) {
@@ -407,17 +407,17 @@ function dslc_module_gen_css( $atts, $settings_raw ) {
 
 		foreach ( $options_arr as $option_arr ) {
 
-			if ( 'image' === $option_arr['type'] ) {
-				if ( isset( $settings[ $option_arr['id'] ] ) && ! empty( $settings[ $option_arr['id'] ] ) && is_numeric( $settings[ $option_arr['id'] ] ) ) {
-					$dslc_var_image_option_bckp[ $option_arr['id'] ] = $settings[ $option_arr['id'] ];
-					$image_info = wp_get_attachment_image_src( $settings[ $option_arr['id'] ], 'full' );
-					$settings[ $option_arr['id'] ] = $image_info[0];
+			if ( 'image' === $option_arr[ 'type' ] ) {
+				if ( isset( $settings[ $option_arr[ 'id' ] ] ) && ! empty( $settings[ $option_arr[ 'id' ] ] ) && is_numeric( $settings[ $option_arr[ 'id' ] ] ) ) {
+					$dslc_var_image_option_bckp[ $option_arr[ 'id' ] ] = $settings[ $option_arr[ 'id' ] ];
+					$image_info = wp_get_attachment_image_src( $settings[ $option_arr[ 'id' ] ], 'full' );
+					$settings[ $option_arr[ 'id' ] ] = $image_info[ 0 ];
 				}
 			}
 
 			// Fix css_custom value ( issue when default changed programmatically ).
-			if ( 'css_custom' === $option_arr['id'] && 'DSLC_Text_Simple' === $module_id && ! isset( $settings['css_custom'] ) ) {
-				$settings['css_custom'] = $option_arr['std'];
+			if ( 'css_custom' === $option_arr[ 'id' ] && 'DSLC_Text_Simple' === $module_id && ! isset( $settings[ 'css_custom' ] ) ) {
+				$settings[ 'css_custom' ] = $option_arr[ 'std' ];
 			}
 		}
 
@@ -430,9 +430,9 @@ function dslc_module_gen_css( $atts, $settings_raw ) {
 
 		$css_output = '';
 
-		if ( 'DSLC_Html' === $module_id && ! isset( $settings['css_custom'] ) ) {
+		if ( 'DSLC_Html' === $module_id && ! isset( $settings[ 'css_custom' ] ) ) {
 			$css_output = '';
-		} elseif ( isset( $settings['css_custom'] ) && 'disabled' === $settings['css_custom'] ) {
+		} elseif ( isset( $settings[ 'css_custom' ] ) && 'disabled' === $settings[ 'css_custom' ] ) {
 			$css_output = '';
 		} else {
 			$css_output = dslc_generate_custom_css( $options_arr, $settings );
@@ -465,41 +465,41 @@ function dslc_generate_custom_css( $module_structure, $module_settings, $restart
 	foreach ( $module_structure as $single_option ) {
 
 		// Make sure our function do not break when setting case is wrong.
-		if ( isset( $single_option['tab'] ) ) {
-			$single_option['tab'] = strtolower( $single_option['tab'] );
+		if ( isset( $single_option[ 'tab' ] ) ) {
+			$single_option[ 'tab' ] = strtolower( $single_option[ 'tab' ] );
 		}
 
-		if ( isset( $single_option['section'] ) ) {
-			$single_option['section'] = strtolower( $single_option['section'] );
+		if ( isset( $single_option[ 'section' ] ) ) {
+			$single_option[ 'section' ] = strtolower( $single_option[ 'section' ] );
 		}
 
-		if ( isset( $single_option['section'] ) && 'responsive' === $single_option['section'] ) {
+		if ( isset( $single_option[ 'section' ] ) && 'responsive' === $single_option[ 'section' ] ) {
 
-			if ( isset( $single_option['tab'] ) && 'phone' === $single_option['tab'] ) {
+			if ( isset( $single_option[ 'tab' ] ) && 'phone' === $single_option[ 'tab' ] ) {
 
-				$module_structure_resp_phone[] = $single_option;
-			} elseif ( 'tablet' === $single_option['tab'] ) {
+				$module_structure_resp_phone[ ] = $single_option;
+			} elseif ( 'tablet' === $single_option[ 'tab' ] ) {
 
-				$module_structure_resp_tablet[] = $single_option;
+				$module_structure_resp_tablet[ ] = $single_option;
 			}
 		} else {
 
-			$module_structure_resp_desktop[] = $single_option;
+			$module_structure_resp_desktop[ ] = $single_option;
 		}
 	}
 
 	$module_structure = array(); // Reset array.
 
-	$module_structure['desktop'] = $module_structure_resp_desktop;
+	$module_structure[ 'desktop' ] = $module_structure_resp_desktop;
 
-	if ( isset( $module_settings['css_res_t'] ) && 'enabled' === $module_settings['css_res_t'] ) {
+	if ( isset( $module_settings[ 'css_res_t' ] ) && 'enabled' === $module_settings[ 'css_res_t' ] ) {
 
-		$module_structure['tablet'] = $module_structure_resp_tablet;
+		$module_structure[ 'tablet' ] = $module_structure_resp_tablet;
 	}
 
-	if ( isset( $module_settings['css_res_p'] ) && 'enabled' === $module_settings['css_res_p'] ) {
+	if ( isset( $module_settings[ 'css_res_p' ] ) && 'enabled' === $module_settings[ 'css_res_p' ] ) {
 
-		$module_structure['phone'] = $module_structure_resp_phone;
+		$module_structure[ 'phone' ] = $module_structure_resp_phone;
 	}
 
 	/* Go through each device group */
@@ -527,7 +527,7 @@ function dslc_generate_custom_css( $module_structure, $module_settings, $restart
 		}
 	}
 
-	$module_instance_id = $module_settings['module_instance_id'];
+	$module_instance_id = $module_settings[ 'module_instance_id' ];
 	// $dslc_css_style .= $css_output;
 	// ↑↑↑ Cause duplication of CSS code. $dslc_css_style is global.
 	return $css_output;
@@ -546,7 +546,7 @@ function dslc_generate_module_css( $module_structure, $module_settings, $restart
 	// of dslc_code (shortcodes + base64) launch a special migration process.
 	// In migration process we fix some issues to make sure nothing breaks
 	// when we switch users to JSON code format.
-	if ( isset( $module_settings['code_version'] ) && 1 === $module_settings['code_version'] ) {
+	if ( isset( $module_settings[ 'code_version' ] ) && 1 === $module_settings[ 'code_version' ] ) {
 		$module_settings = dslc_code_migration( $module_settings );
 	}
 
@@ -569,7 +569,7 @@ function dslc_generate_module_css( $module_structure, $module_settings, $restart
 		$important_append = ' !important';
 	}
 
-	if ( isset( $_GET['dslc'] ) ) {
+	if ( isset( $_GET[ 'dslc' ] ) ) {
 		$important_append = '';
 	}
 
@@ -583,7 +583,7 @@ function dslc_generate_module_css( $module_structure, $module_settings, $restart
 	// Transform module options into css rulles.
 	foreach ( $module_structure as $option_arr ) {
 
-		$option_id = $option_arr['id'];
+		$option_id = $option_arr[ 'id' ];
 
 		// 🔖 RAW CODE CLEANUP
 		// if ( isset( $module_settings[ $option_id ] ) && ! empty( $module_settings[ $option_id ] )  ) {

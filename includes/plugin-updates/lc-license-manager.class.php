@@ -79,55 +79,55 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 			$plugin_author = '';
 			$plugin_file = '';
 
-			if ( isset( $plugin_data['slug'] ) ) {
-				$plugin_slug = $plugin_data['slug'];
+			if ( isset( $plugin_data[ 'slug' ] ) ) {
+				$plugin_slug = $plugin_data[ 'slug' ];
 			} else {
 				return;
 			}
 
-			if ( isset( $plugin_data['product_id'] ) ) {
-				$item_id = $plugin_data['product_id'];
+			if ( isset( $plugin_data[ 'product_id' ] ) ) {
+				$item_id = $plugin_data[ 'product_id' ];
 			} else {
 				return;
 			}
 
-			if ( isset( $plugin_data['file'] ) ) {
-				$plugin_file = $plugin_data['file'];
+			if ( isset( $plugin_data[ 'file' ] ) ) {
+				$plugin_file = $plugin_data[ 'file' ];
 			} else {
 				return;
 			}
 
-			if ( isset( $plugin_data['version'] ) ) {
-				$plugin_version = $plugin_data['version'];
+			if ( isset( $plugin_data[ 'version' ] ) ) {
+				$plugin_version = $plugin_data[ 'version' ];
 			} else {
 				return;
 			}
 
-			if ( isset( $plugin_data['author'] ) ) {
-				$plugin_author = $plugin_data['author'];
+			if ( isset( $plugin_data[ 'author' ] ) ) {
+				$plugin_author = $plugin_data[ 'author' ];
 			} else {
 				return;
 			}
 
-			self::$licenses[ $plugin_slug ]['version'] = $plugin_version;
-			self::$licenses[ $plugin_slug ]['author'] = $plugin_author;
-			self::$licenses[ $plugin_slug ]['item_id'] = $item_id;
-			self::$licenses[ $plugin_slug ]['plugin_file'] = $plugin_file;
+			self::$licenses[ $plugin_slug ][ 'version' ] = $plugin_version;
+			self::$licenses[ $plugin_slug ][ 'author' ] = $plugin_author;
+			self::$licenses[ $plugin_slug ][ 'item_id' ] = $item_id;
+			self::$licenses[ $plugin_slug ][ 'plugin_file' ] = $plugin_file;
 
-			if ( ! isset( self::$licenses[ $plugin_slug ]['license'] ) ) {
-				self::$licenses[ $plugin_slug ]['license'] = '';
+			if ( ! isset( self::$licenses[ $plugin_slug ][ 'license' ] ) ) {
+				self::$licenses[ $plugin_slug ][ 'license' ] = '';
 			}
 
-			if ( ! isset( self::$licenses[ $plugin_slug ]['status'] ) ) {
-				self::$licenses[ $plugin_slug ]['status'] = '';
+			if ( ! isset( self::$licenses[ $plugin_slug ][ 'status' ] ) ) {
+				self::$licenses[ $plugin_slug ][ 'status' ] = '';
 			}
 
-			if ( ! isset( self::$licenses[ $plugin_slug ]['expires'] ) ) {
-				self::$licenses[ $plugin_slug ]['expires'] = '';
+			if ( ! isset( self::$licenses[ $plugin_slug ][ 'expires' ] ) ) {
+				self::$licenses[ $plugin_slug ][ 'expires' ] = '';
 			}
 
-			if ( ! isset( self::$licenses[ $plugin_slug ]['updated'] ) ) {
-				self::$licenses[ $plugin_slug ]['updated'] = '';
+			if ( ! isset( self::$licenses[ $plugin_slug ][ 'updated' ] ) ) {
+				self::$licenses[ $plugin_slug ][ 'updated' ] = '';
 			}
 		}
 
@@ -137,20 +137,20 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 		public function setup_plugin_updater() {
 
 			foreach ( self::$licenses as $slug => $data ) {
-				if ( 	! isset( $data['plugin_file'] ) ||
-					! isset( $data['version'] ) ||
-					! isset( $data['item_id'] ) || 
-					! isset( $data['author'] ) ) return;
+				if ( ! isset( $data[ 'plugin_file' ] ) ||
+					! isset( $data[ 'version' ] ) ||
+					! isset( $data[ 'item_id' ] ) || 
+					! isset( $data[ 'author' ] ) ) return;
 
 				// Setup the updater.
 				$edd_updater = new LC_Plugins_Updater(
 					self::$store_url,
-					$data['plugin_file'],
+					$data[ 'plugin_file' ],
 					array(
-						'version' 	=> $data['version'],
-						'license' 	=> $data['license'],
-						'item_id'   => $data['item_id'], // Product ID.
-						'author' 	=> $data['author'],
+						'version' 	=> $data[ 'version' ],
+						'license' 	=> $data[ 'license' ],
+						'item_id'   => $data[ 'item_id' ], // Product ID.
+						'author' 	=> $data[ 'author' ],
 						'url'       => home_url(),
 					)
 				);
@@ -166,22 +166,22 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 				return;
 			}
 
-			foreach ( $licenses as $slug => $data) {
+			foreach ( $licenses as $slug => $data ) {
 
-				if ( isset( $data['status'] ) ) {
-					self::$licenses[ $slug ]['status'] = $data['status'];
+				if ( isset( $data[ 'status' ] ) ) {
+					self::$licenses[ $slug ][ 'status' ] = $data[ 'status' ];
 				}
 
-				if ( isset( $data['license'] ) ) {
-					self::$licenses[ $slug ]['license'] = $data['license'];
+				if ( isset( $data[ 'license' ] ) ) {
+					self::$licenses[ $slug ][ 'license' ] = $data[ 'license' ];
 				}
 
-				if ( isset( $data['expires'] ) ) {
-					self::$licenses[ $slug ]['expires'] = $data['expires'];
+				if ( isset( $data[ 'expires' ] ) ) {
+					self::$licenses[ $slug ][ 'expires' ] = $data[ 'expires' ];
 				}
 
-				if ( isset( $data['updated'] ) ) {
-					self::$licenses[ $slug ]['updated'] = $data['updated'];
+				if ( isset( $data[ 'updated' ] ) ) {
+					self::$licenses[ $slug ][ 'updated' ] = $data[ 'updated' ];
 				}
 			}
 		}
@@ -190,19 +190,19 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 			$data_to_save = array();
 
 			foreach ( self::$licenses as $slug => $data ) {
-				if ( isset( $data['status'] ) ) {
-					$data_to_save[ $slug ]['status'] = $data['status'];
+				if ( isset( $data[ 'status' ] ) ) {
+					$data_to_save[ $slug ][ 'status' ] = $data[ 'status' ];
 				}
 
-				if ( isset( $data['license'] ) ) {
-					$data_to_save[ $slug ]['license'] = $data['license'];
+				if ( isset( $data[ 'license' ] ) ) {
+					$data_to_save[ $slug ][ 'license' ] = $data[ 'license' ];
 				}
 
-				if ( isset( $data['expires'] ) ) {
-					$data_to_save[ $slug ]['expires'] = $data['expires'];
+				if ( isset( $data[ 'expires' ] ) ) {
+					$data_to_save[ $slug ][ 'expires' ] = $data[ 'expires' ];
 				}
 
-				$data_to_save[ $slug ]['updated'] = current_time( 'timestamp' );
+				$data_to_save[ $slug ][ 'updated' ] = current_time( 'timestamp' );
 			}
 
 			update_option( 'dslc_licenses', $data_to_save );
@@ -218,8 +218,8 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 
 		public function get_license_key( $plugin_slug ) {
 			$data = $this->get_license_data( $plugin_slug );
-			if ( $data && isset( $data['license'] ) ) {
-				return $data['license'];
+			if ( $data && isset( $data[ 'license' ] ) ) {
+				return $data[ 'license' ];
 			} else {
 				return false;
 			}
@@ -227,8 +227,8 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 
 		public function get_license_status( $plugin_slug ) {
 			$data = $this->get_license_data( $plugin_slug );
-			if ( $data && isset( $data['status'] ) ) {
-				return $data['status'];
+			if ( $data && isset( $data[ 'status' ] ) ) {
+				return $data[ 'status' ];
 			} else {
 				return 'inactive';
 			}
@@ -236,8 +236,8 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 
 		public function get_license_expires( $plugin_slug ) {
 			$data = $this->get_license_data( $plugin_slug );
-			if ( $data && isset( $data['expires'] ) ) {
-				return date_i18n( get_option( 'date_format' ), strtotime( $data['expires'], current_time( 'timestamp' ) ) );
+			if ( $data && isset( $data[ 'expires' ] ) ) {
+				return date_i18n( get_option( 'date_format' ), strtotime( $data[ 'expires' ], current_time( 'timestamp' ) ) );
 			} else {
 				return false;
 			}
@@ -256,20 +256,20 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 				$license = false;
 				$action = false;
 
-				if ( isset( $_POST['plugin'] ) ) {
-					$plugin = sanitize_key( $_POST['plugin'] );
+				if ( isset( $_POST[ 'plugin' ] ) ) {
+					$plugin = sanitize_key( $_POST[ 'plugin' ] );
 				}
 
-				if ( isset( $_POST['license'] ) ) {
-					$license = sanitize_key( $_POST['license'] );
+				if ( isset( $_POST[ 'license' ] ) ) {
+					$license = sanitize_key( $_POST[ 'license' ] );
 				}
 
-				if ( isset( $_POST['todo'] ) ) {
-					$action = sanitize_key( $_POST['todo'] );
+				if ( isset( $_POST[ 'todo' ] ) ) {
+					$action = sanitize_key( $_POST[ 'todo' ] );
 				}
 
 				// Check Nonce.
-				if ( wp_verify_nonce( sanitize_key( $_POST['security'] ), 'dslc-ajax-activate-license-for-plugin-' . $plugin ) ) {
+				if ( wp_verify_nonce( sanitize_key( $_POST[ 'security' ] ), 'dslc-ajax-activate-license-for-plugin-' . $plugin ) ) {
 
 					// Do the job.
 					if ( $plugin && $license ) {
@@ -278,8 +278,8 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 					}
 
 				} else {
-					$response['message'] = 'Error with WP authentification. Try to reload this page.';
-					$response['success'] = false;
+					$response[ 'message' ] = 'Error with WP authentification. Try to reload this page.';
+					$response[ 'success' ] = false;
 				}
 
 				// Encode response.
@@ -311,11 +311,11 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 			$item_id = false;
 
 			if ( isset( self::$licenses[ $plugin ] ) &&
-					isset( self::$licenses[ $plugin ]['item_id'] ) ) {
-				$item_id = self::$licenses[ $plugin ]['item_id'];
+					isset( self::$licenses[ $plugin ][ 'item_id' ] ) ) {
+				$item_id = self::$licenses[ $plugin ][ 'item_id' ];
 			} else {
-				$combined_response['message'] = 'Error: missing item_id parameter.';
-				$combined_response['status'] = false;
+				$combined_response[ 'message' ] = 'Error: missing item_id parameter.';
+				$combined_response[ 'status' ] = false;
 			}
 
 			if ( 'activate' === $action ) {
@@ -415,29 +415,29 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 				$this->set_license_expires( $plugin, false );
 			}
 
-			$combined_response['message'] = $message;
-			$combined_response['status'] = $license_data->license;
-			$combined_response['success'] = $license_data->success;
+			$combined_response[ 'message' ] = $message;
+			$combined_response[ 'status' ] = $license_data->license;
+			$combined_response[ 'success' ] = $license_data->success;
 			return $combined_response;
 		}
 
 		public function set_license_key( $plugin, $license_key ) {
 			$license_key = trim( esc_attr( $license_key ) );
-			self::$licenses[ $plugin ]['license'] = $license_key;
+			self::$licenses[ $plugin ][ 'license' ] = $license_key;
 
 			$this->update_license_in_db();
 		}
 
 		public function set_license_status( $plugin, $license_status ) {
 			$license_status = trim( esc_attr( $license_status ) );
-			self::$licenses[ $plugin ]['status'] = $license_status;
+			self::$licenses[ $plugin ][ 'status' ] = $license_status;
 
 			$this->update_license_in_db();
 		}
 
 		public function set_license_expires( $plugin, $license_expires ) {
 			$license_expires = trim( esc_attr( $license_expires ) );
-			self::$licenses[ $plugin ]['expires'] = $license_expires;
+			self::$licenses[ $plugin ][ 'expires' ] = $license_expires;
 
 			$this->update_license_in_db();
 		}
@@ -458,15 +458,15 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 
 			$plugin_to_check = false;
 
-			foreach ( self::$licenses as $slug => $data) {
+			foreach ( self::$licenses as $slug => $data ) {
 				$check_this_plugin = true;
 
 				// Do not continue if last checked less than 7 days ago.
-				if ( ! empty( $data['updated'] ) && strtotime( $data['updated'] ) > strtotime('-7 days') ) {
+				if ( ! empty( $data[ 'updated' ] ) && strtotime( $data[ 'updated' ] ) > strtotime( '-7 days' ) ) {
 					$check_this_plugin = false;
 				}
 
-				if ( $check_this_plugin || empty( $data['updated'] ) ) {
+				if ( $check_this_plugin || empty( $data[ 'updated' ] ) ) {
 					$plugin_to_check = $slug;
 					break;
 				}	
@@ -485,18 +485,18 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 		 */
 		public function license_check( $plugin = false ) {
 
-			if ( 	! $plugin ||
+			if ( ! $plugin ||
 					! isset( self::$licenses[ $plugin ] ) ||
-					! isset( self::$licenses[ $plugin ]['license'] ) ||
-					! isset( self::$licenses[ $plugin ]['item_id'] ) ) {
+					! isset( self::$licenses[ $plugin ][ 'license' ] ) ||
+					! isset( self::$licenses[ $plugin ][ 'item_id' ] ) ) {
 				return;
 			}
 
 			// Data to send in our API request.
 			$api_params = array(
 				'edd_action'=> 'check_license',
-				'license' 	=> self::$licenses[ $plugin ]['license'],
-				'item_id'   => self::$licenses[ $plugin ]['item_id'],
+				'license' 	=> self::$licenses[ $plugin ][ 'license' ],
+				'item_id'   => self::$licenses[ $plugin ][ 'item_id' ],
 				'url'       => home_url(),
 			);
 
@@ -569,8 +569,8 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 			foreach ( $license_block_variants as $staus => $strings ) : ?>
 				<div class="dslc-panel lc-panel-license lc-divided-panels padding-medium" data-show-if-license="<?php echo $staus; ?>">
 					<div class="lc-panel-half">
-						<h3 class="lc-huge margin-top-half"><?php echo esc_html( $strings['text_header'] ); ?></h3>
-						<p class="lc-larger-text"><?php echo $strings['text_body']; ?></p>
+						<h3 class="lc-huge margin-top-half"><?php echo esc_html( $strings[ 'text_header' ] ); ?></h3>
+						<p class="lc-larger-text"><?php echo $strings[ 'text_body' ]; ?></p>
 						<p class="lc-license-block">
 							<span class="dashicons dashicons-admin-network"></span> 
 							<input
@@ -581,9 +581,9 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 								data-plugin-id="<?php echo $plugin; ?>" />	
 							<a 	href="#"
 								class="button button-primary button-hero lc-toggle-license"
-								data-action-type="<?php echo $strings['button_action']; ?>"
+								data-action-type="<?php echo $strings[ 'button_action' ]; ?>"
 								data-action-nonce="<?php echo wp_create_nonce( 'dslc-ajax-activate-license-for-plugin-' . $plugin ) ?>"
-							><?php echo esc_html( $strings['text_button'] ); ?></a>
+							><?php echo esc_html( $strings[ 'text_button' ] ); ?></a>
 							<span class="lc-license-status"></span>
 						</p>
 					</div>
@@ -607,15 +607,15 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 			if ( is_user_logged_in() && current_user_can( DS_LIVE_COMPOSER_CAPABILITY_SAVE ) ):
 
 				// The array we'll pass back to the AJAX call.
-				$response =  false;
+				$response = false;
 				$plugin = false;
 
-				if ( isset( $_POST['plugin'] ) ) {
-					$plugin = sanitize_key( $_POST['plugin'] );
+				if ( isset( $_POST[ 'plugin' ] ) ) {
+					$plugin = sanitize_key( $_POST[ 'plugin' ] );
 				}
 
 				// Check Nonce.
-				if ( wp_verify_nonce( sanitize_key( $_POST['security'] ), 'dslc-ajax-activate-plugin-' . $plugin ) ) {
+				if ( wp_verify_nonce( sanitize_key( $_POST[ 'security' ] ), 'dslc-ajax-activate-plugin-' . $plugin ) ) {
 
 					$result = activate_plugin( $plugin . '/' . $plugin . '.php' );
 
@@ -624,8 +624,8 @@ if ( ! class_exists( 'LC_License_Manager' ) ):
 					}
 
 				} else {
-					$response['message'] = 'Error with WP authentification. Try to reload this page.';
-					$response['success'] = false;
+					$response[ 'message' ] = 'Error with WP authentification. Try to reload this page.';
+					$response[ 'success' ] = false;
 				}
 
 				// Return response.

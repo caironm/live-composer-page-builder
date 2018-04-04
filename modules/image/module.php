@@ -763,7 +763,7 @@ class DSLC_Image extends DSLC_Module {
 		$dslc_options = array_merge( $dslc_options, $this->presets_options() );
 
 		// Cache calculated array in WP Object Cache.
-		wp_cache_add( 'dslc_options_' . $this->module_id, $dslc_options ,'dslc_modules' );
+		wp_cache_add( 'dslc_options_' . $this->module_id, $dslc_options, 'dslc_modules' );
 
 		return apply_filters( 'dslc_module_options', $dslc_options, $this->module_id );
 
@@ -792,24 +792,24 @@ class DSLC_Image extends DSLC_Module {
 		$anchor_target = '_self';
 		$anchor_href = '#';
 
-		if ( 'url_new' === $options['link_type'] ) {
+		if ( 'url_new' === $options[ 'link_type' ] ) {
 			$anchor_target = '_blank';
 		}
 
-		if ( ! empty( $options['link_url'] ) ) {
-			$anchor_href = $options['link_url'];
+		if ( ! empty( $options[ 'link_url' ] ) ) {
+			$anchor_href = $options[ 'link_url' ];
 		}
 
-		if ( 'lightbox' === $options['link_type'] && ! empty( $options['link_lb_image'] ) ) {
+		if ( 'lightbox' === $options[ 'link_type' ] && ! empty( $options[ 'link_lb_image' ] ) ) {
 			$anchor_class .= 'dslc-lightbox-image ';
-			$anchor_href = $options['link_lb_image'];
+			$anchor_href = $options[ 'link_lb_image' ];
 		}
 
 		?>
 		<div class="dslc-image-container">
-		<div class="dslc-image"<?php if ( $dslc_is_admin ) { echo ' data-exportable-content';} ?>>
+		<div class="dslc-image"<?php if ( $dslc_is_admin ) { echo ' data-exportable-content'; } ?>>
 
-			<?php if ( empty( $options['image'] ) && empty( $options['image_url'] ) && is_user_logged_in() ) : ?>
+			<?php if ( empty( $options[ 'image' ] ) && empty( $options[ 'image_url' ] ) && is_user_logged_in() ) : ?>
 
 				<div class="dslc-notification dslc-red"><?php _e( 'No image has been set yet, edit the module to set one.', 'live-composer-page-builder' ); ?></div>
 
@@ -817,8 +817,8 @@ class DSLC_Image extends DSLC_Module {
 
 				// Alt and title empty when an image will remove.
 				if ( $dslc_is_admin ) {
-					$options['image_alt'] = '';
-					$options['image_title'] = '';
+					$options[ 'image_alt' ] = '';
+					$options[ 'image_title' ] = '';
 				}
 
 				?>
@@ -828,78 +828,78 @@ class DSLC_Image extends DSLC_Module {
 				<?php
 
 				$resize = false;
-				$the_image = $options['image'];
+				$the_image = $options[ 'image' ];
 
-				if ( empty( $options['image'] ) ) {
+				if ( empty( $options[ 'image' ] ) ) {
 
-					$the_image = $options['image_url'];
+					$the_image = $options[ 'image_url' ];
 
 				} else {
 
-					if ( ! empty( $options['resize_width'] ) || ! empty( $options['resize_height'] ) ) {
+					if ( ! empty( $options[ 'resize_width' ] ) || ! empty( $options[ 'resize_height' ] ) ) {
 
 						$resize = true;
 						$resize_width = false;
 						$resize_height = false;
 
-						if ( ! empty( $options['resize_width'] ) ) {
-							$resize_width = $options['resize_width'];
+						if ( ! empty( $options[ 'resize_width' ] ) ) {
+							$resize_width = $options[ 'resize_width' ];
 						}
 
-						if ( ! empty( $options['resize_height'] ) ) {
-							$resize_height = $options['resize_height'];
+						if ( ! empty( $options[ 'resize_height' ] ) ) {
+							$resize_height = $options[ 'resize_height' ];
 						}
 
-						$the_image = dslc_aq_resize( $options['image'], $resize_width, $resize_height, true );
+						$the_image = dslc_aq_resize( $options[ 'image' ], $resize_width, $resize_height, true );
 
 					}
 				}
 
-				if ( $dslc_is_admin && ( strlen( $options['image'] ) > 0 ) ) {
-					$image_id = attachment_url_to_postid( $options['image'] );
+				if ( $dslc_is_admin && ( strlen( $options[ 'image' ] ) > 0 ) ) {
+					$image_id = attachment_url_to_postid( $options[ 'image' ] );
 					$image_alt = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
 					$image_title = get_the_title( $image_id );
 
-					if ( strlen( $options['image_alt'] ) === 0 ) {
-						$options['image_alt'] = $image_alt;
-					} elseif ( $options['image_alt'] !== $image_alt ) {
-						update_post_meta( $image_id, '_wp_attachment_image_alt', $options['image_alt'] );
+					if ( strlen( $options[ 'image_alt' ] ) === 0 ) {
+						$options[ 'image_alt' ] = $image_alt;
+					} elseif ( $options[ 'image_alt' ] !== $image_alt ) {
+						update_post_meta( $image_id, '_wp_attachment_image_alt', $options[ 'image_alt' ] );
 					}
 
-					if ( strlen( $options['image_title'] ) === 0 ) {
-						$options['image_title'] = $image_title;
-					} elseif ( $options['image_title'] !== $image_title ) {
+					if ( strlen( $options[ 'image_title' ] ) === 0 ) {
+						$options[ 'image_title' ] = $image_title;
+					} elseif ( $options[ 'image_title' ] !== $image_title ) {
 						$image = array();
-						$image['ID'] = $image_id;
-						$image['post_title'] = $options['image_title'];
+						$image[ 'ID' ] = $image_id;
+						$image[ 'post_title' ] = $options[ 'image_title' ];
 						wp_update_post( $image );
 					}
 				}
 
 				?>
 
-				<?php if ( 'none' !== $options['link_type'] ) : ?>
+				<?php if ( 'none' !== $options[ 'link_type' ] ) : ?>
 					<a class="<?php echo esc_attr( $anchor_class ); ?>" href="<?php echo esc_attr( $anchor_href ); ?>" target="<?php echo esc_attr( $anchor_target ); ?>">
 				<?php endif; ?>
-					<img src="<?php echo esc_attr( $the_image ); ?>" alt="<?php echo esc_attr( $options['image_alt'] ); ?>" title="<?php echo esc_attr( $options['image_title'] ); ?>" />
-				<?php if ( 'none' !== $options['link_type'] ) : ?>
+					<img src="<?php echo esc_attr( $the_image ); ?>" alt="<?php echo esc_attr( $options[ 'image_alt' ] ); ?>" title="<?php echo esc_attr( $options[ 'image_title' ] ); ?>" />
+				<?php if ( 'none' !== $options[ 'link_type' ] ) : ?>
 					</a>
 				<?php endif; ?>
 
-				<?php if ( 'enabled' === $options['custom_text_state'] ) : ?>
+				<?php if ( 'enabled' === $options[ 'custom_text_state' ] ) : ?>
 
 					<div class="dslc-image-caption">
 
 						<?php if ( $dslc_is_admin ) : ?>
-							<div class="dslca-editable-content" data-id="custom_text" data-type="simple" <?php if ( $dslc_is_admin ) { echo 'contenteditable';} ?>>
+							<div class="dslca-editable-content" data-id="custom_text" data-type="simple" <?php if ( $dslc_is_admin ) { echo 'contenteditable'; } ?>>
 								<?php
-								$output_content = stripslashes( $options['custom_text'] );
+								$output_content = stripslashes( $options[ 'custom_text' ] );
 								echo apply_filters( 'dslc_text_block_render', $output_content );
 								?>
 							</div>
 						<?php else : ?>
 							<?php
-							$output_content = stripslashes( $options['custom_text'] );
+							$output_content = stripslashes( $options[ 'custom_text' ] );
 							echo apply_filters( 'dslc_text_block_render', $output_content );
 							?>
 						<?php endif; ?>

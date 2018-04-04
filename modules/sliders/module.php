@@ -52,7 +52,7 @@ class DSLC_Sliders extends DSLC_Module {
 		$sliders = $wpdb->get_results( "SELECT id, title, alias FROM $table_name" );
 		$slider_choices = array();
 
-		$slider_choices[] = array(
+		$slider_choices[ ] = array(
 			'label' => __( '-- Select --', 'live-composer-page-builder' ),
 			'value' => 'not_set',
 		);
@@ -60,7 +60,7 @@ class DSLC_Sliders extends DSLC_Module {
 		if ( ! empty( $sliders ) ) {
 
 			foreach ( $sliders as $slider ) {
-				$slider_choices[] = array(
+				$slider_choices[ ] = array(
 					'label' => $slider->title,
 					'value' => $slider->alias,
 				);
@@ -125,7 +125,7 @@ class DSLC_Sliders extends DSLC_Module {
 
 		/* Module output stars here */
 
-		if ( ! isset( $options['slider'] ) || $options['slider'] == 'not_set' ) {
+		if ( ! isset( $options[ 'slider' ] ) || $options[ 'slider' ] == 'not_set' ) {
 
 			if ( $dslc_is_admin ) :
 				?><div class="dslc-notification dslc-red"><?php _e( 'Click the cog icon on the right of this box to choose which slider to show.', 'live-composer-page-builder' ); ?> <span class="dslca-module-edit-hook dslc-icon dslc-icon-cog"></span></span></div><?php
@@ -133,7 +133,7 @@ class DSLC_Sliders extends DSLC_Module {
 
 		} else {
 
-			echo '[rev_slider ' . $options['slider'] . ']';
+			echo '[rev_slider ' . $options[ 'slider' ] . ']';
 
 		}
 

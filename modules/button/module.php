@@ -40,10 +40,10 @@ class DSLC_Button extends DSLC_Module {
 	function options() {
 
 		// Custom classes fix
-		if ( ! empty( $_POST['button_class'] ) ) {
+		if ( ! empty( $_POST[ 'button_class' ] ) ) {
 
-			$_POST['custom_class'] = $_POST['button_class'];
-			$_POST['button_class'] = '';
+			$_POST[ 'custom_class' ] = $_POST[ 'button_class' ];
+			$_POST[ 'button_class' ] = '';
 		}
 
 		$dslc_options = array(
@@ -1205,59 +1205,59 @@ class DSLC_Button extends DSLC_Module {
 
 		$anchor_append = '';
 
-		if ( isset( $options['button_onclick'] ) && $options['button_onclick'] !== '' ) {
+		if ( isset( $options[ 'button_onclick' ] ) && $options[ 'button_onclick' ] !== '' ) {
 
-			$anchor_append = ' onClick="' . stripslashes( $options['button_onclick'] ) . '"';
+			$anchor_append = ' onClick="' . stripslashes( $options[ 'button_onclick' ] ) . '"';
 		}
 
-		$classes = $options['button_class'] . ' ' . $options['custom_class'];
+		$classes = $options[ 'button_class' ] . ' ' . $options[ 'custom_class' ];
 
 			?>
 
 			<div class="dslc-button">
-				<?php if ( $options['button_target'] == 'lightbox' ) : ?>
-					<a href="<?php echo $options['button_url']; ?>" <?php echo $anchor_append;
-					if ( $options['link_nofollow'] ) { echo 'rel="nofollow"';} ?> class="dslc-lightbox-image <?php echo trim( esc_attr( $classes ) ); ?>">
-						<?php if ( $options['button_state'] == 'enabled' && $options['icon_pos'] == 'left' ) : ?>
-							<?php if ( 'svg' == $options['show_icon'] ) : ?>
-								<?php echo stripslashes( $options['button_inline_svg'] ); ?>
+				<?php if ( $options[ 'button_target' ] == 'lightbox' ) : ?>
+					<a href="<?php echo $options[ 'button_url' ]; ?>" <?php echo $anchor_append;
+					if ( $options[ 'link_nofollow' ] ) { echo 'rel="nofollow"'; } ?> class="dslc-lightbox-image <?php echo trim( esc_attr( $classes ) ); ?>">
+						<?php if ( $options[ 'button_state' ] == 'enabled' && $options[ 'icon_pos' ] == 'left' ) : ?>
+							<?php if ( 'svg' == $options[ 'show_icon' ] ) : ?>
+								<?php echo stripslashes( $options[ 'button_inline_svg' ] ); ?>
 							<?php else : ?>
-								<span class="dslc-icon dslc-icon-<?php echo $options['button_icon_id']; ?>"></span>	
+								<span class="dslc-icon dslc-icon-<?php echo $options[ 'button_icon_id' ]; ?>"></span>	
 							<?php endif; ?>
 						<?php endif; ?>
 						<?php if ( $dslc_is_admin ) : ?>
-							<span class="dslca-editable-content" data-id="button_text"  data-type="simple" contenteditable="true"><?php echo stripslashes( $options['button_text'] ); ?></span>
+							<span class="dslca-editable-content" data-id="button_text"  data-type="simple" contenteditable="true"><?php echo stripslashes( $options[ 'button_text' ] ); ?></span>
 						<?php else : ?>
-							<?php echo stripslashes( $options['button_text'] ); ?>
+							<?php echo stripslashes( $options[ 'button_text' ] ); ?>
 						<?php endif; ?>
-						<?php if ( $options['button_state'] == 'enabled' && $options['icon_pos'] == 'right' ) : ?>
-							<?php if ( 'svg' == $options['show_icon'] ) : ?>
-								<?php echo stripslashes( $options['button_inline_svg'] ); ?>
+						<?php if ( $options[ 'button_state' ] == 'enabled' && $options[ 'icon_pos' ] == 'right' ) : ?>
+							<?php if ( 'svg' == $options[ 'show_icon' ] ) : ?>
+								<?php echo stripslashes( $options[ 'button_inline_svg' ] ); ?>
 							<?php else : ?>
-								<span class="dslc-icon dslc-icon-<?php echo $options['button_icon_id']; ?>"></span>	
+								<span class="dslc-icon dslc-icon-<?php echo $options[ 'button_icon_id' ]; ?>"></span>	
 							<?php endif; ?>
 						<?php endif; ?>
 					</a>
 				<?php else : ?>
-					<a href="<?php echo $options['button_url']; ?>" target="<?php echo $options['button_target']; ?>" <?php echo $anchor_append;
-					if ( $options['link_nofollow'] ) { echo 'rel="nofollow"';} ?> class="<?php echo trim( esc_attr( $classes ) ); ?>">
-						<?php if ( $options['button_state'] == 'enabled' && $options['icon_pos'] == 'left' ) : ?>
-							<?php if ( 'svg' == $options['show_icon'] ) : ?>
-								<?php echo stripslashes( $options['button_inline_svg'] ); ?>
+					<a href="<?php echo $options[ 'button_url' ]; ?>" target="<?php echo $options[ 'button_target' ]; ?>" <?php echo $anchor_append;
+					if ( $options[ 'link_nofollow' ] ) { echo 'rel="nofollow"'; } ?> class="<?php echo trim( esc_attr( $classes ) ); ?>">
+						<?php if ( $options[ 'button_state' ] == 'enabled' && $options[ 'icon_pos' ] == 'left' ) : ?>
+							<?php if ( 'svg' == $options[ 'show_icon' ] ) : ?>
+								<?php echo stripslashes( $options[ 'button_inline_svg' ] ); ?>
 							<?php else : ?>
-								<span class="dslc-icon dslc-icon-<?php echo $options['button_icon_id']; ?>"></span>	
+								<span class="dslc-icon dslc-icon-<?php echo $options[ 'button_icon_id' ]; ?>"></span>	
 							<?php endif; ?>
 						<?php endif; ?>
 						<?php if ( $dslc_is_admin ) : ?>
-							<span class="dslca-editable-content" data-id="button_text"  data-type="simple" contenteditable="true"><?php echo stripslashes( $options['button_text'] ); ?></span>
+							<span class="dslca-editable-content" data-id="button_text"  data-type="simple" contenteditable="true"><?php echo stripslashes( $options[ 'button_text' ] ); ?></span>
 						<?php else : ?>
-							<?php echo stripslashes( $options['button_text'] ); ?>
+							<?php echo stripslashes( $options[ 'button_text' ] ); ?>
 						<?php endif; ?>
-						<?php if ( $options['button_state'] == 'enabled' && $options['icon_pos'] == 'right' ) : ?>
-							<?php if ( 'svg' == $options['show_icon'] ) : ?>
-								<?php echo stripslashes( $options['button_inline_svg'] ); ?>
+						<?php if ( $options[ 'button_state' ] == 'enabled' && $options[ 'icon_pos' ] == 'right' ) : ?>
+							<?php if ( 'svg' == $options[ 'show_icon' ] ) : ?>
+								<?php echo stripslashes( $options[ 'button_inline_svg' ] ); ?>
 							<?php else : ?>
-								<span class="dslc-icon dslc-icon-<?php echo $options['button_icon_id']; ?>"></span>	
+								<span class="dslc-icon dslc-icon-<?php echo $options[ 'button_icon_id' ]; ?>"></span>	
 							<?php endif; ?>
 						<?php endif; ?>
 					</a>
@@ -1267,9 +1267,9 @@ class DSLC_Button extends DSLC_Module {
 
 			<?php if ( $dslc_is_admin ) :
 				/* We output this button code for clean html export only */ ?>
-				<div style="display: none;"<?php if ( $dslc_is_admin ) { echo ' data-exportable-content';} ?>>
-					<a href="<?php echo $options['button_url']; ?>" target="<?php echo $options['button_target']; ?>" <?php if ( $options['link_nofollow'] ) { echo 'rel="nofollow"';} ?>>
-							<?php echo stripslashes( $options['button_text'] ); ?>
+				<div style="display: none;"<?php if ( $dslc_is_admin ) { echo ' data-exportable-content'; } ?>>
+					<a href="<?php echo $options[ 'button_url' ]; ?>" target="<?php echo $options[ 'button_target' ]; ?>" <?php if ( $options[ 'link_nofollow' ] ) { echo 'rel="nofollow"'; } ?>>
+							<?php echo stripslashes( $options[ 'button_text' ] ); ?>
 					</a>
 				</div><!-- .dslc-button -->
 			<?php endif; ?>
