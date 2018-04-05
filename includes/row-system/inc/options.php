@@ -20,6 +20,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function dslc_row_register_options() {
 
+	if ( isset( $_GET['preview_id'] ) ) {
+		$page_id = intval( $_GET['preview_id'] );
+	} elseif ( isset( $_GET['page_id'] ) ) {
+		$page_id = intval( $_GET['page_id'] );
+	} else {
+		$page_id = '';
+	}
+
 	global $dslc_var_row_options;
 
 	$dslc_var_row_options['element_type'] = array(
@@ -50,22 +58,24 @@ function dslc_row_register_options() {
 		),
 	);
 
-	$dslc_var_row_options['sticky'] = array(
-		'id' => 'sticky',
-		'std' => 'disabled',
-		'label' => __( 'Sticky row', 'live-composer-page-builder' ),
-		'type' => 'select',
-		'choices' => array(
-			array(
-				'label' => 'Enabled',
-				'value' => 'enabled',
-			),
-			array(
-				'label' => 'Disabled',
-				'value' => 'disabled',
-			),
-		),	
-	);
+	if ( 'dslc_hf' === get_post_type( $page_id ) ) {
+		$dslc_var_row_options['sticky'] = array(
+			'id' => 'sticky',
+			'std' => 'disabled',
+			'label' => __( 'Sticky row', 'live-composer-page-builder' ),
+			'type' => 'select',
+			'choices' => array(
+				array(
+					'label' => 'Enabled',
+					'value' => 'enabled',
+				),
+				array(
+					'label' => 'Disabled',
+					'value' => 'disabled',
+				),
+			),	
+		);
+	}
 
 	$dslc_var_row_options['type'] = array(
 		'id' => 'type',
