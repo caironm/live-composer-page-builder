@@ -672,7 +672,7 @@ function dslc_sticky_row() {
 
 	var row = $('body .dslc-modules-section');
 
-	if ( row.hasClass('dslc-sticky-row') ) {
+	if ( row.hasClass('dslc-sticky-row') && ! $('body').hasClass('dslca-enabled') ) {
 
 		var rowSticky = $('body .dslc-modules-section.dslc-sticky-row');
 		var rowStickyPos = rowSticky.offset().top;
@@ -682,7 +682,6 @@ function dslc_sticky_row() {
 
 		// Account for Admin bar.
 		if ( $( '#wpadminbar' ).length ) {
-			console.log('tttt');
 			rowStickyPos -= $( '#wpadminbar' ).height();
 		}
 
