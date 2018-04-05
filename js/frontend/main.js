@@ -668,8 +668,41 @@ function dslc_social_share( width, height, url ) {
 	return false;
 }
 
+function dslc_sticky_row() {
 
+	var row = $('body .dslc-modules-section');
 
+	if ( row.hasClass('dslc-sticky-row') ) {
+
+		var rowSticky = $('body .dslc-modules-section.dslc-sticky-row');
+		var rowStickyPos = rowSticky.offset().top;
+
+		$('.dslc-sticky-row').wrap('<div class="dslc-sticky-placeholder"></div>');
+		$('.dslc-sticky-placeholder').height($('.dslc-sticky-row').outerHeight());
+
+		// Account for Admin bar.
+		if ( $( '#wpadminbar' ).length ) {
+			console.log('tttt');
+			rowStickyPos -= $( '#wpadminbar' ).height();
+		}
+
+		// on scroll
+		$(window).scroll(function() {
+
+			// get scroll position from top of the page
+			var scrollPos = $(window).scrollTop();
+
+			// check if scroll position
+			if (scrollPos >= rowStickyPos) {
+				rowSticky.addClass('dslc-sticky-section-fixed');
+
+			} else {
+				rowSticky.removeClass('dslc-sticky-section-fixed');
+			}
+
+		});
+	}
+}
 
 jQuery(document).ready(function($){
 
@@ -1122,6 +1155,8 @@ jQuery(document).ready(function($){
 		dslc_check_viewport();
 		dslc_check_progress_bar_viewport();
 	});
+
+	dslc_sticky_row();
 });
 
 jQuery(document).ready(function($){

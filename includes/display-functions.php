@@ -1281,7 +1281,6 @@ function dslc_modules_section_front( $atts, $content = null, $version = 1 ) {
 	}
 
 	// Show on Class.
-	// if ( '' !== $atts['show_on']  ) {
 	$show_on = explode( ' ', trim( $atts['show_on'] ) );
 
 	if ( ! in_array( 'desktop', $show_on, true ) ) {
@@ -1295,7 +1294,14 @@ function dslc_modules_section_front( $atts, $content = null, $version = 1 ) {
 	if ( ! in_array( 'phone', $show_on, true ) ) {
 		$section_class .= 'dslc-hide-on-phone ';
 	}
-	// }
+
+	// Sticky Class.
+	if ( ! empty( $atts['sticky'] ) && 'enabled' === trim( $atts['sticky'] ) ) {
+		$section_class .= 'dslc-sticky-row';
+	} else {
+		$section_class .= '';
+	}
+
 	// Allow other developers to add classes.
 	$filter_classes = array();
 	$filter_classes = apply_filters( 'dslc_row_class', $filter_classes, $atts );

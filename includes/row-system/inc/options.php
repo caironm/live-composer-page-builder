@@ -50,6 +50,19 @@ function dslc_row_register_options() {
 		),
 	);
 
+	$dslc_var_row_options['sticky'] = array(
+		'id' => 'sticky',
+		'std' => '',
+		'label' => __( 'Sticky row', 'live-composer-page-builder' ),
+		'type' => 'checkbox',
+		'choices' => array(
+			array(
+				'label' => 'Enabled',
+				'value' => 'enabled',
+			),
+		),
+	);
+
 	$dslc_var_row_options['type'] = array(
 		'id' => 'type',
 		'std' => 'wrapper',
