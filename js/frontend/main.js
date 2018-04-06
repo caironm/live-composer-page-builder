@@ -677,13 +677,12 @@ function dslc_sticky_row() {
 		var rowSticky = $('body .dslc-modules-section.dslc-sticky-row');
 		var rowStickyPos = rowSticky.offset().top;
 
-		$('.dslc-sticky-row').wrap('<div class="dslc-sticky-placeholder"></div>');
-		$('.dslc-sticky-placeholder').height($('.dslc-sticky-row').outerHeight());
-
 		// Account for Admin bar.
 		if ( $( '#wpadminbar' ).length ) {
 			rowStickyPos -= $( '#wpadminbar' ).height();
 		}
+
+		var rowStickyHeight = jQuery( "body .dslc-modules-section.dslc-sticky-row" ).outerHeight();
 
 		// on scroll
 		$(window).scroll(function() {
@@ -694,7 +693,7 @@ function dslc_sticky_row() {
 			// check if scroll position
 			if (scrollPos >= rowStickyPos) {
 				rowSticky.addClass('dslc-sticky-section-fixed');
-
+				jQuery( "#dslc-main .dslc-modules-section:first-child" ).css({ paddingTop : rowStickyHeight });
 			} else {
 				rowSticky.removeClass('dslc-sticky-section-fixed');
 			}

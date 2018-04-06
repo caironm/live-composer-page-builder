@@ -75,6 +75,17 @@ function dslc_row_register_options() {
 				),
 			),	
 		);
+
+		$dslc_var_row_options['sticky_padding_vertical'] = array(
+			'id' => 'sticky_padding_vertical',
+			'std' => '30',
+			'label' => __( 'Sticky Padding Vertical', 'live-composer-page-builder' ),
+			'type' => 'slider',
+			'affect_on_change_rule' => 'padding-bottom,padding-top',
+			'affect_on_change_el' => '.dslc-sticky-section-fixed',
+			'ext' => 'px',
+			'max' => 500,
+		);
 	}
 
 	$dslc_var_row_options['type'] = array(
